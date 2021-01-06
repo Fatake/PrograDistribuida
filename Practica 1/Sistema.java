@@ -1,4 +1,9 @@
-
+/**
+ * BUAP
+ * Facultad en Ciencias de la Computacion
+ * Ines Yaelin Rojas Huerta 201732130
+ * Paulo Cesar Ruiz Lozano 201727952
+ */
 
 /**
  * Class Sistema
