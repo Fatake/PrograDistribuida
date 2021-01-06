@@ -18,8 +18,8 @@ public class Sistema {
       Contenedor contenedor = new Contenedor(0, 50);
 
       // Brazos
-      Brazo brazo1 = new Brazo(1, 25, contenedor);
-      Brazo brazo2 = new Brazo(2, 25, contenedor);
+      Brazo brazo1 = new Brazo(1, 12, contenedor);
+      Brazo brazo2 = new Brazo(2, 7, contenedor);
 
       // Arreglo de hilos
       Thread[] hilos = new Thread[2];
