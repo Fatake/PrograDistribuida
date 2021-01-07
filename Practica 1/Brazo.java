@@ -97,5 +97,4 @@ public class Brazo implements Runnable {
   public Integer getId () {
     return id;
   }
-
 }
