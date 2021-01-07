@@ -8,11 +8,6 @@
  * Class Brazo
  */
 public class Brazo implements Runnable {
-
-  //
-  // Fields
-  //
-
   /**
    * Capacidad inicial de carga en cada brazo
    */
