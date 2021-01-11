@@ -37,12 +37,13 @@ public class Brazo implements Runnable {
   public void run() {
 
     for (int i = 0; i < capacidad; i++) {
-      if ( !contenedor.descargarUnaPieza() ) {
+      int aux = contenedor.descargarUnaPieza();
+      if ( aux == 0) {
         break;
       }
-      System.out.println("[B"+id+"] Descargando piezas "+(i+1)+" de mis "+capacidad);
+      System.out.println("[Brazo "+id+"] Quitando pieza "+(i+1)+" de mis "+capacidad+" Quedan: "+aux);
     }
-    System.out.println("[B"+id+"] Termine");
+    System.out.println("[Brazo "+id+"] Termine");
   }
 
   //

@@ -38,7 +38,7 @@ public class Contenedor {
    * Get the value of piezas
    * @return the value of piezas
    */
-  public synchronized Integer getPiezas () {
+  public int getPiezas () {
     return piezas;
   }
 
@@ -65,12 +65,11 @@ public class Contenedor {
   /**
    * @return  Boolean
    */
-  public synchronized Boolean descargarUnaPieza(){
+  public synchronized int descargarUnaPieza(){
     if (piezas == 0) {
-      return false;
+      return 0;
     }
     this.piezas --;
-    System.out.println("[C"+id+"] Quedan "+piezas);
-    return true;
+    return this.piezas;
   }
 }

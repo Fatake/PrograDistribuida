@@ -22,8 +22,12 @@ public class Sistema {
         Contenedor contenedor = new Contenedor(0, 50);
 
         // Brazos
-        Brazo brazo1 = new Brazo(1, 25, contenedor);
-        Brazo brazo2 = new Brazo(2, 25, contenedor);
+        Brazo brazo1 = new Brazo(1, 12, contenedor);
+        Brazo brazo2 = new Brazo(2, 7, contenedor);
+
+        System.out.println("[*] Iniciando el contenedor con: "+contenedor.getPiezas()+" Piezas");
+        System.out.println("[*] Iniciando Brazo 1 con: "+brazo1.getCapacidad()+" de Capacidad");
+        System.out.println("[*] Iniciando Brazo 2 con: "+brazo2.getCapacidad()+" de Capacidad");
 
         // Arreglo de hilos
         Thread[] hilos = new Thread[2];
@@ -41,6 +45,11 @@ public class Sistema {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        }
+        if (contenedor.getPiezas() != 0) {
+            System.out.println("[*]Brazos a maxima capacidad; El contenedor aun tiene:"+contenedor.getPiezas());
+        }else{
+            System.out.println("[*]Contenedor vacio");
         }
         System.out.println("[*] End Program");
     }
