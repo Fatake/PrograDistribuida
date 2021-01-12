@@ -22,8 +22,8 @@ public class Sistema {
         Contenedor contenedor = new Contenedor(0, 50);
 
         // Brazos
-        Brazo brazo1 = new Brazo(1, 12, contenedor);
-        Brazo brazo2 = new Brazo(2, 7, contenedor);
+        Brazo brazo1 = new Brazo(1, 30, contenedor);
+        Brazo brazo2 = new Brazo(2, 30, contenedor);
 
         System.out.println("[*] Iniciando el contenedor con: "+contenedor.getPiezas()+" Piezas");
         System.out.println("[*] Iniciando Brazo 1 con: "+brazo1.getCapacidad()+" de Capacidad");
