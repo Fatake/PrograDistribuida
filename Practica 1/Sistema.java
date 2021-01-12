@@ -47,9 +47,10 @@ public class Sistema {
             }
         }
         if (contenedor.getPiezas() != 0) {
-            System.out.println("[*]Brazos a maxima capacidad; El contenedor aun tiene:"+contenedor.getPiezas());
+            System.out.println("[*] Brazos a maxima capacidad");
+            System.out.println("[*] El contenedor aun tiene:"+contenedor.getPiezas());
         }else{
-            System.out.println("[*]Contenedor vacio");
+            System.out.println("[*] Contenedor vacio");
         }
         System.out.println("[*] End Program");
     }
