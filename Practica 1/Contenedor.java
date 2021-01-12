@@ -28,9 +28,6 @@ public class Contenedor {
    * @return
    */
   public synchronized int descargarUnaPieza(){
-    if (piezas == 0) {
-      return 0;
-    }
     this.piezas --;
     return this.piezas;
   }
