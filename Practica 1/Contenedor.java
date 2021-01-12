@@ -23,6 +23,18 @@ public class Contenedor {
     this.piezas = piezas;
   };
   
+  /**
+   * Metodo Descargar Pieza
+   * @return
+   */
+  public synchronized int descargarUnaPieza(){
+    if (piezas == 0) {
+      return 0;
+    }
+    this.piezas --;
+    return this.piezas;
+  }
+
   //
   // Accessor methods
   //
@@ -58,18 +70,5 @@ public class Contenedor {
     return id;
   }
 
-  //
-  // Other methods
-  //
-
-  /**
-   * @return  Boolean
-   */
-  public synchronized int descargarUnaPieza(){
-    if (piezas == 0) {
-      return 0;
-    }
-    this.piezas --;
-    return this.piezas;
-  }
+  
 }
