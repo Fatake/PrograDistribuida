@@ -8,8 +8,7 @@
  * Class Brazo
  */
 public class Brazo implements Runnable {
-  private static boolean[] in = { false, false }; 
-  private static volatile int turn = -1; 
+  
   /**
    * Capacidad inicial de carga en cada brazo
    */
@@ -37,25 +36,31 @@ public class Brazo implements Runnable {
   //
   @Override
   public void run() {
+    int a ;
     for (int i = 0; i < capacidad; i++) {
-      in[id] = true;// banderas quien está preparado
-      turn = other(); // obtiene el turno
-      int aux = 0;
-      while (in[other()] && turn == other()) { 
-        aux = contenedor.descargarUnaPieza();
+      contenedor.banderas[this.id] = true;// listo para descargar
+      if (this.id == 0) {
+        contenedor.turn = 1;
+        a = 1;
+      } else {
+        contenedor.turn = 0;
+        a = 0;
       }
-      if ( aux < 0) {
+      int aux;
+      // Seccion critica
+      while (contenedor.banderas[a] && contenedor.turn == a) { 
+        // en espera ocupada a quel que no le toque descargar piezas
+      }
+      if (contenedor.piezas > 0) {
+        aux = contenedor.descargarUnaPieza();
+        System.out.println("[Brazo "+id+"] Quitando pieza "+(i+1)+" de mis "+capacidad+" Quedan: "+aux+" piezas.");
+        contenedor.banderas[this.id] = false;
+      }else{
         break;
       }
-      System.out.println("[Brazo "+id+"] Quitando pieza "+(i+1)+" de mis "+capacidad+" Quedan: "+aux+" piezas.");
-      in[id] = false;
     }
-      
   }
 
-  private int other() { 
-    return id == 0 ? 1 : 0; 
-  }
 
   //
   // Accessor methods

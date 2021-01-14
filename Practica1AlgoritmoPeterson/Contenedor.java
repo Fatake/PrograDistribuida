@@ -9,6 +9,8 @@
  * Class Contenedor
  */
 public class Contenedor {
+  public volatile boolean[] banderas = { false, false }; // estoy listo
+  public volatile int turn = -1; // turno actual
   //
   // Fields
   //
