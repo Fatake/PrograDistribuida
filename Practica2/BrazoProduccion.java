@@ -54,7 +54,7 @@ public class BrazoProduccion implements Runnable {
       
       if ( pieza1 && pieza2) {
         System.out.println("Brazo "+id+": Montando Producto "+(productos+1)+" de "+capacidad);
-        productos++;
+        productos ++;
       }else{
         if (pieza2 && pieza2 == false) {
           System.out.println("Brazo "+id+": Contenedor B Vacio, saliendo ");

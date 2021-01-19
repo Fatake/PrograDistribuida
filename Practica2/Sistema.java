@@ -29,8 +29,8 @@ public class Sistema {
             System.out.println("[*] Iniciando el contenedor "+cont.getId()+" con: "+cont.getPiezas()+" Piezas.");
         }
 
-        System.out.println("[*] Iniciando Brazo 1 con: "+brazo1.getCapacidad()+" de Capacidad.");
-        System.out.println("[*] Iniciando Brazo 2 con: "+brazo2.getCapacidad()+" de Capacidad.");
+        System.out.println("[*] Iniciando Brazo 1: puede hacer "+brazo1.getCapacidad()+" Productos.");
+        System.out.println("[*] Iniciando Brazo 2: puede hacer "+brazo2.getCapacidad()+" Produtos.");
 
         // System.exit(1);
         // Arreglo de hilos
