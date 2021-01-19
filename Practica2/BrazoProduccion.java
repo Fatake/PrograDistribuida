@@ -67,7 +67,7 @@ public class BrazoProduccion implements Runnable {
     //salida();
   }
   public void salida() {
-    System.out.println("[+] Brazo "+id+": Hice "+(productos+1)+" productos. Termine.");
+    System.out.println("[+] Brazo "+id+": Hice "+productos+" productos. Termine.");
   }
   //
   // Accessor methods
