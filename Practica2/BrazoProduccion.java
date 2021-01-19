@@ -14,6 +14,7 @@ public class BrazoProduccion implements Runnable {
   private int capacidad = 25;
   private Contenedor[] contenedor;
   private int id;
+  private int productos = 0;
   
   //
   // Constructors
@@ -36,17 +37,38 @@ public class BrazoProduccion implements Runnable {
   @Override
   public void run() {
     for (int i = 0; i < capacidad; i++) {
-      int pieza1 = contenedor[0].descargarUnaPieza();
-      int pieza2 = contenedor[1].descargarUnaPieza();
+      boolean pieza1 = false;
+      boolean pieza2 = false;
+      if (this.id == 0) {
+        pieza1 = contenedor[0].descargarUnaPieza();
+        System.out.println("Brazo "+id+": Descargando una pieza del Contenedor A");
+        pieza2 = contenedor[1].descargarUnaPieza();
+        System.out.println("Brazo "+id+": Descargando una pieza del Contenedor B");
+      }else{
+        pieza1 = contenedor[1].descargarUnaPieza();
+        System.out.println("Brazo "+id+": Descargando una pieza del Contenedor B");
+        pieza2 = contenedor[0].descargarUnaPieza();
+        System.out.println("Brazo "+id+": Descargando una pieza del Contenedor A");
+      }
       
-      if ( pieza1 < 0) {
+      
+      if ( pieza1 && pieza2) {
+        System.out.println("Brazo "+id+": Montando Producto "+(productos+1)+" de "+capacidad);
+        productos++;
+      }else{
+        if (pieza2 && pieza2 == false) {
+          System.out.println("Brazo "+id+": Contenedor B Vacio, saliendo ");
+        }else{
+          System.out.println("Brazo "+id+": Contenedor A Vacio, saliendo ");
+        }
         break;
       }
-      System.out.println("Brazo "+id+": Quitando pieza "+(i+1)+" de mis "+capacidad);
     }
-    System.out.println("Brazo "+id+": Termine.");
+    //salida();
   }
-
+  public void salida() {
+    System.out.println("[+] Brazo "+id+": Hice "+(productos+1)+" productos. Termine.");
+  }
   //
   // Accessor methods
   //
@@ -82,5 +104,9 @@ public class BrazoProduccion implements Runnable {
    */
   public Integer getId () {
     return id;
+  }
+
+  public int getProductos(){
+    return this.productos;
   }
 }

@@ -27,12 +27,12 @@ public class Contenedor {
    * Metodo Descargar Pieza
    * @return
    */
-  public synchronized int descargarUnaPieza(){
+  public synchronized boolean descargarUnaPieza(){
     if (this.piezas == 0) {
-      return 0;
+      return false;
     }
     this.piezas --;
-    return this.piezas;
+    return true;
   }
 
   //
