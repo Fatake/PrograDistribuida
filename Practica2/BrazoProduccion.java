@@ -7,7 +7,7 @@
 /**
  * Class Brazo
  */
-public class Brazo implements Runnable {
+public class BrazoProduccion implements Runnable {
   /**
    * Capacidad inicial de carga en cada brazo
    */
@@ -24,7 +24,7 @@ public class Brazo implements Runnable {
    * @param capacidad
    * @param contenedor
    */
-  public Brazo (int id, int capacidad, Contenedor[] contenedor) { 
+  public BrazoProduccion (int id, int capacidad, Contenedor[] contenedor) { 
     this.id = id;
     this.capacidad = capacidad;
     this.contenedor = contenedor;

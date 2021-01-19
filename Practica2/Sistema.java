@@ -22,8 +22,8 @@ public class Sistema {
         Contenedor contenedores[] = {new Contenedor("A", 50),new Contenedor("B", 50)};
 
         // Brazos
-        Brazo brazo1 = new Brazo(1, 32, contenedores);
-        Brazo brazo2 = new Brazo(2, 7, contenedores);
+        BrazoProduccion brazo1 = new BrazoProduccion(1, 32, contenedores);
+        BrazoProduccion brazo2 = new BrazoProduccion(2, 7, contenedores);
 
         for (Contenedor cont : contenedores) {
             System.out.println("[*] Iniciando el contenedor "+cont.getId()+" con: "+cont.getPiezas()+" Piezas.");
