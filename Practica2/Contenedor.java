@@ -9,15 +9,14 @@
  * Class Contenedor
  */
 public class Contenedor {
-  //
-  // Fields
-  //
   public int piezas;
   private String id;
-  
-  //
-  // Constructors
-  //
+
+  /**
+   * Constructor
+   * @param id
+   * @param piezas
+   */
   public Contenedor (String id, int piezas) { 
     this.id = id;
     this.piezas = piezas;
@@ -69,6 +68,4 @@ public class Contenedor {
   public String getId () {
     return id;
   }
-
-  
 }

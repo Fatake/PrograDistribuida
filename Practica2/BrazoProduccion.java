@@ -16,11 +16,8 @@ public class BrazoProduccion implements Runnable {
   private int id;
   private int productos = 0;
   
-  //
-  // Constructors
-  //
   /**
-   * 
+   * Contructor
    * @param id
    * @param capacidad
    * @param contenedor
@@ -51,24 +48,27 @@ public class BrazoProduccion implements Runnable {
         System.out.println("Brazo "+id+": Descargando una pieza del Contenedor A");
       }
       
-      
       if ( pieza1 && pieza2) {
         System.out.println("Brazo "+id+": Montando Producto "+(productos+1)+" de "+capacidad);
         productos ++;
       }else{
         if (pieza2 && pieza2 == false) {
-          System.out.println("Brazo "+id+": Contenedor B Vacio, saliendo ");
+          System.out.println("Brazo "+id+": No puedo hacer mas piezas Contenedor B Vacio, saliendo ");
         }else{
-          System.out.println("Brazo "+id+": Contenedor A Vacio, saliendo ");
+          System.out.println("Brazo "+id+": No puedo hacer mas piezas  Contenedor A Vacio, saliendo ");
         }
         break;
       }
     }
-    //salida();
   }
+
+  /**
+   * Guarda la salida de cantidad de procutos
+   */
   public void salida() {
     System.out.println("[+] Brazo "+id+": Hice "+productos+" productos. Termine.");
   }
+  
   //
   // Accessor methods
   //

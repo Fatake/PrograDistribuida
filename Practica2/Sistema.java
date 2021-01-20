@@ -9,9 +9,6 @@
  * Class Sistema
  */
 public class Sistema {
-    //
-    // Constructors
-    //
     public Sistema () { };
 
     /**
@@ -32,21 +29,17 @@ public class Sistema {
         System.out.println("[*] Iniciando Brazo 1: puede hacer "+brazo1.getCapacidad()+" Productos.");
         System.out.println("[*] Iniciando Brazo 2: puede hacer "+brazo2.getCapacidad()+" Produtos.");
 
-        // System.exit(1);
-        // Arreglo de hilos
+        // Generando Hilos
         Thread[] hilos = new Thread[2];
-
         hilos[0] = new Thread(brazo1);
-        hilos[0].start();
-
         hilos[1] = new Thread(brazo2);
+
+        hilos[0].start();
         hilos[1].start();
         
-        // En espera a terminar los procesos
         for (int i = 0; i < hilos.length; i++) {
             try{
                 hilos[i].join();
-                //System.out.println("Brazo "+id+": Hice "+(productos+1)+"Productos Termine.");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -60,7 +53,7 @@ public class Sistema {
                 System.out.println("[*] Contenedor "+cont.getId()+" vacio.");
             }
         }
-        
+
         System.out.println("\n[*] End Program.");
     }
 }
