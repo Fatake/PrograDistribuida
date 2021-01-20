@@ -16,7 +16,7 @@ public class Sistema {
      */
     public static void main(String[] args) {
         // Contenedor de piezas
-        Contenedor contenedores[] = {new Contenedor("A", 50),new Contenedor("B", 50)};
+        Contenedor contenedores[] = {new Contenedor("A", 15),new Contenedor("B", 28)};
 
         // Brazos
         BrazoProduccion brazo1 = new BrazoProduccion(1, 25, contenedores);
