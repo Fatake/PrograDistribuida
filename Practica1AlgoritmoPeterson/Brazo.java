@@ -8,17 +8,10 @@
  * Class Brazo
  */
 public class Brazo implements Runnable {
-  
-  /**
-   * Capacidad inicial de carga en cada brazo
-   */
   private int capacidad = 25;
   private Contenedor contenedor;
   private int id;
   
-  //
-  // Constructors
-  //
   /**
    * 
    * @param id
@@ -31,9 +24,6 @@ public class Brazo implements Runnable {
     this.contenedor = contenedor;
   };
   
-  //
-  // Methods
-  //
   @Override
   public void run() {
     int a ;
@@ -53,18 +43,16 @@ public class Brazo implements Runnable {
       }
       if (contenedor.piezas > 0) {
         aux = contenedor.descargarUnaPieza();
-        System.out.println("[Brazo "+id+"] Quitando pieza "+(i+1)+" de mis "+capacidad+" Quedan: "+aux+" piezas.");
+        System.out.println("[Brazo "+(id+1)+"] Quitando pieza "+(i+1)+" de mis "+capacidad+" Quedan: "+aux+" piezas.");
         contenedor.banderas[this.id] = false;
       }else{
+        System.out.println("[Brazo "+(id+1)+"] Termine.");
+        contenedor.banderas[this.id] = false;
         break;
       }
     }
   }
 
-
-  //
-  // Accessor methods
-  //
   /**
    * Set the value of capacidad
    * Capacidad inicial de carga en cada brazo

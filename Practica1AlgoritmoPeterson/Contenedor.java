@@ -11,15 +11,14 @@
 public class Contenedor {
   public volatile boolean[] banderas = { false, false }; // estoy listo
   public volatile int turn = -1; // turno actual
-  //
-  // Fields
-  //
   public int piezas;
   private int id;
-  
-  //
-  // Constructors
-  //
+
+  /**
+   * Constructor
+   * @param id
+   * @param piezas
+   */
   public Contenedor (int id, int piezas) { 
     this.id = id;
     this.piezas = piezas;
@@ -34,9 +33,6 @@ public class Contenedor {
     return this.piezas;
   }
 
-  //
-  // Accessor methods
-  //
   /**
    * Set the value of piezas
    * @param newVar the new value of piezas
@@ -68,6 +64,6 @@ public class Contenedor {
   public Integer getId () {
     return id;
   }
-
-  
 }
+
+

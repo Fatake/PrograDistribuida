@@ -9,10 +9,6 @@
  * Class Sistema
  */
 public class Sistema {
-    
-    //
-    // Constructors
-    //
     public Sistema () { };
 
     /**
@@ -20,11 +16,11 @@ public class Sistema {
      */
     public static void main(String[] args) {
         // Contenedor de piezas
-        Contenedor contenedor = new Contenedor(0, 50);
+        Contenedor contenedor = new Contenedor(0, 10);
 
         // Brazos
-        Brazo brazo1 = new Brazo(0, 25, contenedor);
-        Brazo brazo2 = new Brazo(1, 25, contenedor);
+        Brazo brazo1 = new Brazo(0, 15, contenedor);
+        Brazo brazo2 = new Brazo(1, 30, contenedor);
 
         System.out.println("[*] Iniciando el contenedor con: "+contenedor.getPiezas()+" Piezas.");
         System.out.println("[*] Iniciando Brazo 1 con: "+brazo1.getCapacidad()+" de Capacidad.");
