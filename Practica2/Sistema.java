@@ -16,18 +16,18 @@ public class Sistema {
      */
     public static void main(String[] args) {
         // Contenedor de piezas
-        Contenedor contenedores[] = {new Contenedor("A", 30),new Contenedor("B", 12)};
+        Contenedor contenedores[] = {new Contenedor("A", 12),new Contenedor("B", 6)};
 
         // Brazos
-        BrazoProduccion brazo1 = new BrazoProduccion(1, 10, contenedores);
-        BrazoProduccion brazo2 = new BrazoProduccion(2, 15, contenedores);
+        BrazoProduccion brazo1 = new BrazoProduccion(1, 8, contenedores);
+        BrazoProduccion brazo2 = new BrazoProduccion(2, 4, contenedores);
 
         for (Contenedor cont : contenedores) {
             System.out.println("[*] Iniciando el contenedor "+cont.getId()+" con: "+cont.getPiezas()+" Piezas.");
         }
 
-        System.out.println("[*] Iniciando Brazo 1: puede hacer "+brazo1.getCapacidad()+" Productos.");
-        System.out.println("[*] Iniciando Brazo 2: puede hacer "+brazo2.getCapacidad()+" Produtos.");
+        System.out.println("[*] Iniciando Brazo 1: capacidad "+brazo1.getCapacidad()+" Puede hacer hasta"+(brazo1.getCapacidad()/2) +"Productos.");
+        System.out.println("[*] Iniciando Brazo 2: capacidad "+brazo2.getCapacidad()+" Puede hacer hasta"+(brazo2.getCapacidad()/2) +"Productos.");
 
         // Generando Hilos
         Thread[] hilos = new Thread[2];
