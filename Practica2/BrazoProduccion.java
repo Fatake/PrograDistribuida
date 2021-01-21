@@ -8,10 +8,7 @@
  * Class Brazo
  */
 public class BrazoProduccion implements Runnable {
-  /**
-   * Capacidad inicial de carga en cada brazo
-   */
-  private int capacidad = 25;
+  private int capacidad;
   private Contenedor[] contenedor;
   private int id;
   private int productos = 0;
@@ -36,12 +33,13 @@ public class BrazoProduccion implements Runnable {
     for (int i = 0; i < capacidad; i++) {
       boolean pieza1 = false;
       boolean pieza2 = false;
-      if (this.id == 0) {
+
+      if (this.id == 1) { // Brazo 1
         pieza1 = contenedor[0].descargarUnaPieza();
         System.out.println("Brazo "+id+": Descargando una pieza del Contenedor A");
         pieza2 = contenedor[1].descargarUnaPieza();
         System.out.println("Brazo "+id+": Descargando una pieza del Contenedor B");
-      }else{
+      }else if(this.id == 2){ // Brazo 2
         pieza1 = contenedor[1].descargarUnaPieza();
         System.out.println("Brazo "+id+": Descargando una pieza del Contenedor B");
         pieza2 = contenedor[0].descargarUnaPieza();
@@ -53,9 +51,9 @@ public class BrazoProduccion implements Runnable {
         productos ++;
       }else{
         if (pieza2 && pieza2 == false) {
-          System.out.println("Brazo "+id+": No puedo hacer mas piezas Contenedor B Vacio, saliendo ");
+          System.out.println("Brazo "+id+": No puedo hacer mas piezas Contenedor Vacio, saliendo ");
         }else{
-          System.out.println("Brazo "+id+": No puedo hacer mas piezas  Contenedor A Vacio, saliendo ");
+          System.out.println("Brazo "+id+": No puedo hacer mas piezas  Contenedor Vacio, saliendo ");
         }
         break;
       }

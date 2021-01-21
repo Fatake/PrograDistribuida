@@ -16,11 +16,11 @@ public class Sistema {
      */
     public static void main(String[] args) {
         // Contenedor de piezas
-        Contenedor contenedores[] = {new Contenedor("A", 15),new Contenedor("B", 28)};
+        Contenedor contenedores[] = {new Contenedor("A", 30),new Contenedor("B", 12)};
 
         // Brazos
-        BrazoProduccion brazo1 = new BrazoProduccion(1, 25, contenedores);
-        BrazoProduccion brazo2 = new BrazoProduccion(2, 25, contenedores);
+        BrazoProduccion brazo1 = new BrazoProduccion(1, 10, contenedores);
+        BrazoProduccion brazo2 = new BrazoProduccion(2, 15, contenedores);
 
         for (Contenedor cont : contenedores) {
             System.out.println("[*] Iniciando el contenedor "+cont.getId()+" con: "+cont.getPiezas()+" Piezas.");
