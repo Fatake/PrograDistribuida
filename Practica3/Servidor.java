@@ -121,8 +121,8 @@ public class Servidor {
 			// est�n en el buffer se cierra el OutputStreams
 			salHaciaCliente.close();
 
-			// se cierra el socket
-			serverSocket.close();
+			clientSocket.close();
+
 		}catch (IOException e) {
 			System.err.println(e);
 			System.exit(-1);

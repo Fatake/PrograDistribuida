@@ -21,7 +21,7 @@ La  comunicación  síncrona  entre  procesos  cliente  y  servidor  con  las  c
 
 El  cliente,  establece  una  conexión  con  el  servidor  para  solicitar  sus  servicios.  Envía  las  diferentes  peticiones  de  servicio,  recibirá  las  respuestas  del servidor e informara  al usuario (mediante la  salida estándar)  la cantidad  de vocales por parte  del  servidor  para  cada  una  de  las  frases  introducidas.  Una  vez  que  el  usuario introduce la secuencia END OF SERVICE, el cliente finaliza su ejecución.
 
-1.- **Ejecutar ** el servidor en una terminal. Posteriormente, abrir otra terminal para ejecutar el cliente. En este caso el servidor y el cliente se ejecutaran en la misma máquina (en local). Analizar el comportamiento de ambos procesos y las comunicaciones que se establecen entre ellos.
+1.- **Ejecutar **el servidor en una terminal. Posteriormente, abrir otra terminal para ejecutar el cliente. En este caso el servidor y el cliente se ejecutaran en la misma máquina (en local). Analizar el comportamiento de ambos procesos y las comunicaciones que se establecen entre ellos.
 
 2.- **Modificar ambos programas**. En el caso del servidor, el puerto será un parámetro de invocación desde la línea de comandos. En el caso del cliente, tomará dos parámetros: el IP donde se encuentra el servidor y el puerto en el que escucha peticiones. Para probar su ejecución, se proporcionará la dirección IP de la computadora en la que se va a ejecutar el servidor (mediante el comando ***ipconfig***). El cliente se ejecutará en otra computadora para que invoque el servicio que ofrece el servidor. Analizar el comportamiento de ambos procesos y la comunicación que se establece.
 
