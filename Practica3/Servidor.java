@@ -21,7 +21,7 @@ public class Servidor {
    		return server;
   	}
 
-  	//Establecer conexión con el servidor y devolver socket
+  	//Establecer conexiï¿½n con el servidor y devolver socket
   	//si no lo logra abortar programa
   	private static Socket creaClientSocket(ServerSocket server){
   		Socket res = null;
@@ -43,15 +43,15 @@ public class Servidor {
 
 		for (int i = 0; i < fraseMin.length(); ++i) {
     		switch(fraseMin.charAt(i)) {
-        		case 'a': case 'á':
-        		case 'e': case 'é':
-        		case 'i': case 'í':
-        		case 'o': case 'ó':
-        		case 'u': case 'ú':
+        		case 'a':
+        		case 'e': 
+        		case 'i':
+        		case 'o':
+        		case 'u':
             		res++;
             		break;
         		default:
-            		// se ignoran las demás letras
+            		// se ignoran las demï¿½s letras
    			}
    		}
 		return res;
@@ -63,24 +63,26 @@ public class Servidor {
 			System.exit(1);  
 		}
 		int SERVER_PORT = Integer.parseInt(args[0]);
-		// El servidor escuchará peticiones en local
+		// El servidor escucharï¿½ peticiones en local
 		// en el puerto SERVER_PORT (>= 1024)
 		ServerSocket serverSocket = null; //para escuchar
 		Socket clientSocket = null;       //uno por cliente
 		
 		System.out.println("[+] Iniciando Servidor... por el puerto "+SERVER_PORT);
+
+
 		// Inicializar el socket del cliente con el que se va
 		// a comunicar el servidor, es decir se acepta la
-		// conexión de un cliente al servidor mediante
-		// el método accept()
+		// conexiï¿½n de un cliente al servidor mediante
+		// el mï¿½todo accept()
 		serverSocket = creaListenSocket(SERVER_PORT);
 
-		// En este ejemplo, sólo uno. En un caso general
-		// un servidor tendría esto en un ciclo, creando
+		// En este ejemplo, sï¿½lo uno. En un caso general
+		// un servidor tendrï¿½a esto en un ciclo, creando
 		// uno por cada nuevo cliente
 		clientSocket = creaClientSocket(serverSocket);
 
-		// Inicializar los canales de comunicación utilizados en
+		// Inicializar los canales de comunicaciï¿½n utilizados en
 		// el socket para comunicarse con el cliente.
 		// El OutputStream permite enviar mensajes al cliente
 		// El InputStream permite recibir mensajes emitidos
@@ -110,13 +112,13 @@ public class Servidor {
 				// Enviar la respuesta al cliente
 				salHaciaCliente.println(respuesta);
 
-				// Recibir nueva petición del cliente
+				// Recibir nueva peticiï¿½n del cliente
 				inputLine = entDesdeCliente.readLine();
 			}
-			// Al cerrar cualquier canal de comunicación
-			// utilizado por un socket, éste se cierra.
-			// Para asegurarse que se envíen las respuestas que
-			// están en el buffer se cierra el OutputStream.
+			// Al cerrar cualquier canal de comunicaciï¿½n
+			// utilizado por un socket, ï¿½ste se cierra.
+			// Para asegurarse que se envï¿½en las respuestas que
+			// estï¿½n en el buffer se cierra el OutputStreams
 			salHaciaCliente.close();
 
 			// se cierra el socket
@@ -126,6 +128,7 @@ public class Servidor {
 			System.exit(-1);
 		}
 
-		System.out.println("[i] Cerrando Coneccion");
+		System.out.println("[i] Cerrando Coneccion "+clientSocket.getInetAddress());
+
 	}
 }
