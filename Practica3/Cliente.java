@@ -1,5 +1,4 @@
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.io.PrintWriter;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -14,7 +13,7 @@ public class Cliente {
 	// Creaci�n del socket con el que se llevar� a cabo la comunicaci�n con el servidor.
 	static private Socket socketAlServidor = null;
 
-   static private boolean conectarServidor(int maxIntentos){
+	static private boolean conectarServidor(int maxIntentos){
 		//hasta maxIntentos intentos de conexi�n, para darle tiempo al servidor a arrancar
 		boolean exito = false;     //�hay servidor?
 		int van = 0;
@@ -27,14 +26,14 @@ public class Cliente {
 				van++;
 				System.err.println("[!] Fallo #" + van);
 				try {
-    				Thread.sleep(500);
+					Thread.sleep(500);
 				} catch (InterruptedException e2) {
-    				e2.printStackTrace();
+					e2.printStackTrace();
 				}
 			}
 		}
 		return exito;
-		}
+	}
 
 	public static void main(String[] args) {
 		if (args.length < 2) {
