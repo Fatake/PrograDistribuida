@@ -6,16 +6,16 @@ import java.io.IOException;
 
 public class Cliente {
 
-	// Indicar la direcci�n y el n�mero de puerto donde escuchar� el proceso servidor
+	// Indicar la direccion y el numero de puerto donde escuchar el proceso servidor
 	static private String SERVER_ADDRESS = "localhost";
 	static private int SERVER_PORT = 8080;
 
-	// Creaci�n del socket con el que se llevar� a cabo la comunicaci�n con el servidor.
+	// Creacion del socket con el que se llevara a cabo la comunicacion con el servidor.
 	static private Socket socketAlServidor = null;
 
 	static private boolean conectarServidor(int maxIntentos){
-		//hasta maxIntentos intentos de conexi�n, para darle tiempo al servidor a arrancar
-		boolean exito = false;     //�hay servidor?
+		//hasta maxIntentos intentos de conexion, para darle tiempo al servidor a arrancar
+		boolean exito = false;     // hay servidor?
 		int van = 0;
 
 		while((van<maxIntentos) && !exito){
@@ -52,8 +52,8 @@ public class Cliente {
 			System.exit(1);           //abortar si hay problemas
 		}
 
-		// ya hay conex��n
-		// Inicializar los flujos de datos del socket para la comunicaci�n con el servidor
+		// ya hay conexcion
+		// Inicializar los flujos de datos del socket para la comunicacion con el servidor
 
 		PrintWriter canalSalidaAlServidor = null;
 		BufferedReader canalEntradaDelServidor = null;
@@ -68,12 +68,12 @@ public class Cliente {
 		BufferedReader entradaStandard = new BufferedReader(new InputStreamReader(System.in));
 		String userInput = "";
 
-		// Protocolo de comunicaci�n con el Servidor.
+		// Protocolo de comunicacion con el Servidor.
 		// Mientras no se reciba la secuencia "END OF SERVICE"
-		// el servidor contar� las vocales que aparecen en las frases
-		// que le env�ar� el cliente.
+		// el servidor contara las vocales que aparecen en las frases
+		// que le enviar el cliente.
 		// El cliente obtiene las frases
-		// que le pasa al servidor del usuario que lo est� ejecutando.
+		// que le pasa al servidor del usuario que lo esta ejecutando.
 		try{
 			while (!(userInput.equals("Salida!"))) {
 				System.out.print("Texto: ");
@@ -91,11 +91,11 @@ public class Cliente {
 				}
 			}
 
-			// Al cerrar cualquiera de los canales de comunicaci�n utilizados por un socket,�ste se cierra.
+			// Al cerrar cualquiera de los canales de comunicacion utilizados por un socket,este se cierra.
 			// cerrar el canal de entrada.
 			canalEntradaDelServidor.close();
 
-			// cerrar el Socket de comunicaci�n con el servidor.
+			// cerrar el Socket de comunicacion con el servidor.
 			socketAlServidor.close();
 		} catch (Exception e){
 			System.err.println(e);
