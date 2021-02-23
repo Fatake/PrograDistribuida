@@ -1,0 +1,21 @@
+**Implementación de Aplicaciones Distribuidas a Bajo nivel**
+
+**El modelo cliente/servidor mediante el uso sockets**
+
+El desarrollo de Aplicaciones distribuidas a bajo nivel mediante el uso de sockets siguiendo el modelo cliente/servidor. El Servidor es un proceso que ofrece uno más  servicios  a través  de la red.  El Cliente es un proceso que realiza peticiones de los  servicios  ofrecidos por el servidor de manera remota.  Consecuentemente, e l servidor estará en la espera de recibir peticiones de servicios  por parte de los clientes. En el momento  de recibir una petición,  internamente la procesará y devolverá  al cliente  un  resultado.  La  comunicación  entre  los  procesos  cliente  y  servidor  es  mediante  sockets.  Estos  representan  los  extremos  de  la  conexión  que  se  establece  para  llevar  a  cabo  esta  comunicación.  Cuando  dos  procesos  requieren  comunicarse  solicitan  al  sistema  operativo la  creación de un socket. La respuesta a esta solicitud es un identificador que  permite al proceso hacer referencia al nuevo socket creado.  De acuerdo a los  protocolos  de Internet existen dos tipos de sockets :
+
+**Los  sockets  orientados  a  la  comunicación  síncrona,**  que proporcionan  una  transmisión bidireccional, continua y fiable (los datos se comunican ordenados  y  sin  duplicados)  con  conexión  mediante  el  protocolo  TCP  (Transport  Control  Protocol).  En  Java  se  implementan  mediante  las  clases  java.net.Socket  y  java.net.ServerSocket.
+
+**Los sockets orientados a la comunicación asíncrona,** que proporcionan una trasmisión bidireccional,   no  fiable,  de  longitud  máxima  prefijada  y  sin  conexión  mediante  el  protocolo  UDP  (User  Datagram  Protocol).  En  Java  se  implementan  mediante la clase java.net.DatagramSocket.  Ambos tipos de sockets tienen asociados un objeto java.io.OutputStream  y java.io.InputStream  mediante  los  cuales  se  pueden  emitir  y  recibir  cadenas  de  bytes,  respectivamente.
+
+**Objetivo:**
+
+Dearrollar una aplicación Distribuida mediante el uso de sockets  java.net.Socket y java.net.ServerSocket para el cliente y el servidor, respectivamente.  En **Servidor..java** se muestra un proceso que recibe peticiones de un cliente  en un puerto específico, mientras que en **Cliente.java** se muestra a un proceso que utiliza  un servicio. La instrucción  String  SERVER_ADDRESS = " localhost "; permite  que el cliente se ejecute en la misma máquina que el servidor.  El  proceso  servidor  está  asociado  al  número  de  puerto  indicado  en  la  variable  SERVER PORT. El proceso cliente solicitará al proceso servidor que cuente  la cantidad  de  vocales  de  las  frases  que  introduzca  el  usuario  por  la  entrada  estándar.  El  proceso  servidor atiende  a  las peticiones del cliente y le comunica la respuesta   hasta que reciba  la secuencia END OF SERVICE. Cuando recibe   esta secuencia el  servidor finaliza su  ejecución.
+
+1.-  Ejecutar  el servidor en una terminal. Posteriormente, abrir otra terminal para ejecutar el cliente. En este caso el servidor y el cliente se ejecutaran en la misma máquina (localmente). Analizar el comportamiento de ambos procesos y la comunicación que se establece entre ellos.
+
+2.-  **Modificar ambos programas** . En el caso del servidor, el puerto será un parámetro de invocación desde la línea de comandos. En el caso del cliente, tomará dos parámetros: el IP donde se encuentra el servidor y el puerto en el que recibe peticiones. Para probar su ejecución, se proporcionará la dirección IP de la computadora en la que se va a ejecutar el servidor (mediante el comando  ***ipconfig*** ). El cliente se ejecutará en otra computadora para que invoque el servicio que ofrece el servidor. Analizar el comportamiento de ambos procesos y la comunicación que se establece.
+
+3.- **Modificar el proceso servidor,**** **de modo que pueda mantener la conexión y atender a varios clientes.
+
+4.-  Ahora con el uso de  S**ockets orientados a la comunicación asíncrona. **Ejecutar el ejemplo constituido por el servidor:  [UDPServer ](UDPServer.java) y el cliente:  [UDPClient ](UDPClient.java) de manera local. Porsteriormente de modo remoto, añadir capturas de pantalla de ambas ejecucione en el reporte.
