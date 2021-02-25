@@ -1,5 +1,6 @@
 import java.net.*;
 import java.io.*;
+import java.nio.ByteBuffer;
 
 /**
  * 
@@ -43,8 +44,9 @@ public class UDPServer{
 				aSocket.receive(request);
 				String mensaje = new String(request.getData());
 				System.out.println("[i] Recibiendo: "+mensaje);
-				Integer cantidad_vocales = new Integer (numeroDeVocales(mensaje));
-				byte[] salida = cantidad_vocales.byteValue();
+				
+				int cantidad_vocales = numeroDeVocales(mensaje);
+				byte[] salida = ByteBuffer.allocate(4).putInt(cantidad_vocales).array();
 
 				// Envia datos a un nueva datagrama 
 				// donde DatagramPacket(buffer,lenght, addres, port)
@@ -52,7 +54,7 @@ public class UDPServer{
 				// address del destino
 				// port puerto del destino
 				DatagramPacket reply = new DatagramPacket(salida,
-														salida.getLength(), 
+														salida.length, 
 														request.getAddress(), 
 														request.getPort());
 				
