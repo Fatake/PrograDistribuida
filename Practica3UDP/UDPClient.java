@@ -1,6 +1,6 @@
 import java.net.*;
 import java.io.*;
-
+import java.nio.ByteBuffer;
 /**
  * Cliente
  */
@@ -40,8 +40,8 @@ public class UDPClient{
 			// Datagrama de entrada
 			DatagramPacket entrada = new DatagramPacket(buffer, buffer.length);
 			aSocket.receive(entrada);
-
-			System.out.println("Tiene: " + new Integer(entrada.getData()));
+			int vocales = ByteBuffer.wrap(entrada.getData().getInt());
+			System.out.println("Tiene: " + vocales ;
 
 		}catch (SocketException e){
 			System.out.println("Socket: " + e.getMessage());

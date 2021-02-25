@@ -43,7 +43,7 @@ public class UDPServer{
 				aSocket.receive(request);
 				String mensaje = new String(request.getData());
 				System.out.println("[i] Recibiendo: "+mensaje);
-				Integer cantidad_vocal = new Integer (numeroDeVocales(mensaje));
+				Integer cantidad_vocales = new Integer (numeroDeVocales(mensaje));
 				byte[] salida = cantidad_vocales.byteValue();
 
 				// Envia datos a un nueva datagrama 
