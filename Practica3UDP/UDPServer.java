@@ -29,6 +29,7 @@ public class UDPServer{
     public static void main(String args[]){ 
     	DatagramSocket aSocket = null;
 		try{
+			System.out.println("[i] Iniciando Servidor\n" );
 	    	aSocket = new DatagramSocket(6789);
 			
 			// create socket at agreed port
