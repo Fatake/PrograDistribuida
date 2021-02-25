@@ -5,6 +5,26 @@ import java.io.*;
  * 
  */
 public class UDPServer{
+
+	private static int numeroDeVocales(String frase) {
+		int res = 0;
+		String fraseMin = frase.toLowerCase();
+
+		for (int i = 0; i < fraseMin.length(); ++i) {
+    		switch(fraseMin.charAt(i)) {
+        		case 'a':
+        		case 'e': 
+        		case 'i':
+        		case 'o':
+        		case 'u':
+            		res++;
+            		break;
+        		default:
+   			}
+   		}
+		return res;
+	}
+
     public static void main(String args[]){ 
     	DatagramSocket aSocket = null;
 		try{
@@ -23,14 +43,16 @@ public class UDPServer{
 				aSocket.receive(request);
 				String mensaje = new String(request.getData());
 				System.out.println("[i] Recibiendo: "+mensaje);
+				Integer cantidad_vocal = new Integer (numeroDeVocales(mensaje));
+				byte[] salida = cantidad_vocales.byteValue();
 
 				// Envia datos a un nueva datagrama 
 				// donde DatagramPacket(buffer,lenght, addres, port)
 				// buffer y lenght es lo que se va a enviar y el tamaño
 				// address del destino
 				// port puerto del destino
-				DatagramPacket reply = new DatagramPacket(request.getData(),
-														request.getLength(), 
+				DatagramPacket reply = new DatagramPacket(salida,
+														salida.getLength(), 
 														request.getAddress(), 
 														request.getPort());
 				

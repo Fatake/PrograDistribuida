@@ -11,22 +11,22 @@ public class UDPClient{
 		// Crea un Socket Datagrama
 		DatagramSocket aSocket = null;
 		try {
-			// Crea el soquet
+			// Crea el socket
 			aSocket = new DatagramSocket();
 
 			// Genera un ID del servidor
-			InetAddress aHost = InetAddress.getByName(args[1]);
+			InetAddress aHost = InetAddress.getByName(args[0]);
 
 			// Puerto del servidor
 			int serverPort = 6789;
 
 			
 			// Recibe mensaje por agumentos
-			byte [] mensaje = args[0].getBytes(); 
+			byte [] mensaje = args[1].getBytes(); 
 
 			// Crea un datagrama de salida
 			DatagramPacket salida = new DatagramPacket(mensaje, 
-													args[0].length(), 
+													args[1].length(), 
 													aHost, 
 													serverPort);
 
@@ -41,7 +41,7 @@ public class UDPClient{
 			DatagramPacket entrada = new DatagramPacket(buffer, buffer.length);
 			aSocket.receive(entrada);
 
-			System.out.println("Respuesta: " + new String(entrada.getData()));
+			System.out.println("Tiene: " + new Integer(entrada.getData()));
 
 		}catch (SocketException e){
 			System.out.println("Socket: " + e.getMessage());
