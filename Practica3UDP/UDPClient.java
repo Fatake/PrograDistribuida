@@ -18,7 +18,7 @@ public class UDPClient{
 			InetAddress aHost = InetAddress.getByName(args[0]);
 
 			// Puerto del servidor
-			int serverPort = 6789;
+			int serverPort = 25565;
 
 			
 			// Recibe mensaje por agumentos
