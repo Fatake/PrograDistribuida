@@ -8,8 +8,8 @@ public class HelloServer {
   public static void main (String[] argv) {
     System.out.println("[i] Iniciando Servidor RMI");
     try {
-      Naming.rebind ("Hello", new Hello ("Prueba de clientes remotos"));
-      System.out.println ("[i] Registro con Naming complo.");
+      Naming.rebind ("rmi://localhost:1099/Hola", new Hello ("Prueba de clientes remotos"));
+      System.out.println ("[i] Registro con Naming Completo.");
     } catch (Exception e) {
       System.out.println ("[i] Fallo en el registro " + e);
     }
