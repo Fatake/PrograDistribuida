@@ -1,4 +1,3 @@
-import java.io.*;
 import java.rmi.*;
 
 public class HelloServer{
@@ -7,6 +6,7 @@ public class HelloServer{
    * @param argv The command line arguments which are ignored.
    */
   public static void main (String[] argv) {
+    System.out.println("[i] Iniciando Servidor RMI");
     try {
       Naming.rebind ("Hello", new Hello ("Prueba de clientes remotos"));
       System.out.println ("Hello Server is ready.");
