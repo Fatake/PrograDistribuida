@@ -1,4 +1,6 @@
-import java.rmi.*;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
 /**
  * Remote Interface for the "Hello, world!" example.
  */

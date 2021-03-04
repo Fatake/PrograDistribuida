@@ -1,6 +1,6 @@
-import java.rmi.*;
+import java.rmi.Naming;
 
-public class HelloClient{
+public class HelloClient {
 
   /**
    * Client program for the "Hello, world!" example.
