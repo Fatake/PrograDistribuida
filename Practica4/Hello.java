@@ -4,6 +4,10 @@ import java.rmi.server.*;
  * Remote Class for the "Hello, world!" example.
  */
 public class Hello extends UnicastRemoteObject implements HelloInterface {
+  /**
+   *
+   */
+  private static final long serialVersionUID = 1L;
   private String message;
   /**
    * Construct a remote object
