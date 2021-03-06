@@ -177,7 +177,14 @@ public class IOArchivo extends UnicastRemoteObject implements IOArchivoInterface
    * @throws RemoteException
    */
   void renombrar(String nombreArchivo) throws RemoteException{
-
+    File nuevo = new File(nombreArchivo);
+    boolean f = this.archivo.renameTo(nuevo);
+    if (f){
+      System.out.println("[i] El renombrado ha sido correcto");
+    } else {
+      System.out.println("[!] El renombrado no se ha podido realizar");
+    }
+      
   }
   
   /**
