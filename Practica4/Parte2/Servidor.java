@@ -1,6 +1,6 @@
 import java.rmi.Naming;
 
-public class HelloServer {
+public class Servidor {
   /**
    * Server program for the "Hello, world!" example.
    * @param argv The command line arguments which are ignored.
