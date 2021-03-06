@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.OutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.io.IOException;
 
 /**
  * Remote Class for the "Hello, world!" example.
@@ -84,8 +85,13 @@ public class IOArchivo extends UnicastRemoteObject implements IOArchivoInterface
    * 
    * @throws RemoteException
    */
-  void imprimir () throws RemoteException{
-
+  void imprimir () throws RemoteException,IOException{
+    FileReader  fr = new FileReader (this.archivo);
+    BufferedReader  br = new BufferedReader(fr);
+    String linea;
+    while((linea=br.readLine())!=null){
+      System.out.println(linea);
+    }
   }
 
   /**
@@ -98,6 +104,31 @@ public class IOArchivo extends UnicastRemoteObject implements IOArchivoInterface
    */
   void respaldar(String nombreArchivo) throws RemoteException{
 
+    File respaldo = new File(nombreArchivo);
+    if (!respaldo.exists()) {
+      respaldo.createNewFile();
+    }
+
+    if (this.archivo.exists()) {
+      try {
+        InputStream in = new FileInputStream(this.archivo);
+        OutputStream out = new FileOutputStream(respaldo);
+        // We use a buffer for the copy (Usamos un buffer para la copia).
+        byte[] buf = new byte[1024];
+        int len;
+        while ((len = in.read(buf)) > 0) {
+            out.write(buf, 0, len);
+        }
+        in.close();
+        out.close();
+        System.out.println("[i] Respaldo Existoso");
+      } catch (IOException ioe) {
+        ioe.printStackTrace();
+        System.out.println("[!] Error al Respaldar");
+      }
+    }else{
+      System.out.println("[!] No existe el archivo en el servidor");
+    }
   }
 
   /**
@@ -110,7 +141,31 @@ public class IOArchivo extends UnicastRemoteObject implements IOArchivoInterface
    * @throws RemoteException
    */
   void copiar (String nombreArchivodestino) throws RemoteException{
+    File respaldo = new File(nombreArchivo);
+    if (!respaldo.exists()) {
+      respaldo.createNewFile();
+    }
 
+    if (this.archivo.exists()) {
+      try {
+        InputStream in = new FileInputStream(this.archivo);
+        OutputStream out = new FileOutputStream(respaldo);
+        // We use a buffer for the copy (Usamos un buffer para la copia).
+        byte[] buf = new byte[1024];
+        int len;
+        while ((len = in.read(buf)) > 0) {
+            out.write(buf, 0, len);
+        }
+        in.close();
+        out.close();
+        System.out.println("[i] Copia Creada Existoso");
+      } catch (IOException ioe) {
+        ioe.printStackTrace();
+        System.out.println("[!] Error al crear copia");
+      }
+    }else{
+      System.out.println("[!] No existe el archivo en el servidor");
+    }
   }
   
   /**
