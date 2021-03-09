@@ -8,12 +8,12 @@ public interface FileInterface extends Remote {
 	public File[] listar() throws RemoteException;
 
 	// Paulo
-	// que devuelva el número de líneas del archivo
-	int cuentaLineas (String nombrearchivo) throws RemoteException;
+	// que devuelva el numero de líneas del archivo
+	int cuentaLineas (String nombreArchivo) throws RemoteException;
 
 	// Paulo
-	// que devuelva el número de Vocales del archivo
-	int cuentavocales (String nombrearchivo) throws RemoteException;
+	// que devuelva el numero de Vocales del archivo
+	int cuentavocales (String nombreArchivo) throws RemoteException;
 	
 	// In	
 	// que escriba el contenido del archivo a os
@@ -26,19 +26,19 @@ public interface FileInterface extends Remote {
 	
 	// In
 	// que respalde el archivo
-	void respaldar(String nombrearchivo) throws RemoteException;
+	void respaldar(String nombreArchivo) throws RemoteException;
 
 	// Paulo
 	// que copie el contenido de un archivo 
 	// fuente a un archivo destino nombrearchivodestino
-	void copiar (String nombrearchivodestino) throws RemoteException; 
+	void copiar (String nombreArchivoDestino) throws RemoteException; 
 
 	// Paulo
 	// que renombre el archivo
-	void renombrar(String nombrearchivo) throws RemoteException;
+	void renombrar(String nombreArchivo) throws RemoteException;
 
 	// In
 	// que elimine el archivo de almacenamiento masivo.
-	void eliminar(String nombrearchivo) throws RemoteException;
+	void eliminar(String nombreArchivo) throws RemoteException;
 
 }
