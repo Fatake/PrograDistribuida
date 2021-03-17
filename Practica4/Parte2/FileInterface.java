@@ -14,7 +14,7 @@ public interface FileInterface extends Remote {
 
 	// Paulo
 	// que devuelva el numero de Vocales del archivo
-	int cuentavocales (String nombreArchivo) throws RemoteException;
+	int cuentaVocales (String nombreArchivo) throws RemoteException;
 	
 	// In	
 	// que escriba el contenido del archivo a os

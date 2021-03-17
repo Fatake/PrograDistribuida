@@ -1,12 +1,13 @@
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.OutputStream;
-import java.nio.file.Path;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.rmi.Remote;
 
 public class FileImpl extends UnicastRemoteObject
   implements FileInterface {
@@ -68,16 +69,65 @@ public class FileImpl extends UnicastRemoteObject
          return(null);
       }
    }
+   private int numeroDeVocales(String frase) {
+      int res = 0;
+      String fraseMin = frase.toLowerCase();
+
+      for (int i = 0; i < fraseMin.length(); ++i) {
+          switch(fraseMin.charAt(i)) {
+              case 'a':
+              case 'e': 
+              case 'i':
+              case 'o':
+              case 'u':
+                  res++;
+                  break;
+              default:
+            }
+         }
+      return res;
+   }
 
    @Override
    public int cuentaLineas(String nombreArchivo) throws RemoteException {
-      // TODO Auto-generated method stub
-      return 0;
+      
+      BufferedReader reader;
+      int contador = 0;
+		try {
+			reader = new BufferedReader(new FileReader(nombreArchivo));
+			String line = reader.readLine();
+         
+			while (line != null) {
+				// read next line
+				line = reader.readLine();
+            contador ++;
+			}
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+      return contador;
    }
+
+   
    @Override
-   public int cuentavocales(String nombreArchivo) throws RemoteException {
-      // TODO Auto-generated method stub
-      return 0;
+   public int cuentaVocales(String nombreArchivo) throws RemoteException {
+      BufferedReader reader;
+      int contador = 0;
+		try {
+			reader = new BufferedReader(new FileReader(nombreArchivo));
+			String line = reader.readLine();
+         
+			while (line != null) {
+				// read next line
+				line = reader.readLine();
+            contador += numeroDeVocales(line);
+			}
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+      return contador;
    }
    @Override
    public void escribe(OutputStream os) throws RemoteException {
