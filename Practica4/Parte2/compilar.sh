@@ -3,4 +3,8 @@
 rm -rf *.class
 javac *.java
 rmic FileImpl
-rmiregistry 9878
+fork(){
+    echo "Ejecutando Servidor"
+    
+}
+rmiregistry 9878 & java -Djava.security.policy=politica.txt FileServer  
