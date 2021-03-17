@@ -2,9 +2,11 @@
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.OutputStream;
 import java.nio.file.Path;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.rmi.Remote;
 
 public class FileImpl extends UnicastRemoteObject
   implements FileInterface {
@@ -15,11 +17,24 @@ public class FileImpl extends UnicastRemoteObject
    private static final long serialVersionUID = 1L;
    private String name;
 
+   /**
+    * Constructor
+    * @param s
+    * @throws RemoteException
+    */
    public FileImpl(String s) throws RemoteException{
       super();
-      name = s;
+      this.name = s;
    }
-   public File[] listar() {  
+
+   //
+   // Metodos
+   //
+
+   /**
+    * Funcion lista archivos del servidor
+    */
+   public File[] listar() throws RemoteException{  
       File[] archivos  = null;
       try {
          File dir = new File(".");
@@ -35,7 +50,10 @@ public class FileImpl extends UnicastRemoteObject
       return archivos;
    }
 
-   public byte[] downloadFile(String fileName){
+   /**
+    * Descarga el archivo dado
+    */
+   public byte[] downloadFile(String fileName) throws RemoteException{
       try {
          File file = new File(fileName);
          byte buffer[] = new byte[(int)file.length()];
@@ -49,5 +67,46 @@ public class FileImpl extends UnicastRemoteObject
          e.printStackTrace();
          return(null);
       }
+   }
+
+   @Override
+   public int cuentaLineas(String nombreArchivo) throws RemoteException {
+      // TODO Auto-generated method stub
+      return 0;
+   }
+   @Override
+   public int cuentavocales(String nombreArchivo) throws RemoteException {
+      // TODO Auto-generated method stub
+      return 0;
+   }
+   @Override
+   public void escribe(OutputStream os) throws RemoteException {
+      // TODO Auto-generated method stub
+      
+   }
+   @Override
+   public void imprimir() throws RemoteException {
+      // TODO Auto-generated method stub
+      
+   }
+   @Override
+   public void respaldar(String nombreArchivo) throws RemoteException {
+      // TODO Auto-generated method stub
+      
+   }
+   @Override
+   public void copiar(String nombreArchivoDestino) throws RemoteException {
+      // TODO Auto-generated method stub
+      
+   }
+   @Override
+   public void renombrar(String nombreArchivo) throws RemoteException {
+      // TODO Auto-generated method stub
+      
+   }
+   @Override
+   public void eliminar(String nombreArchivo) throws RemoteException {
+      // TODO Auto-generated method stub
+      
    }
 }
