@@ -1,5 +1,6 @@
 #!/bin/bash
 
+rm -rf *.class
 javac *.java
 rmic FileImpl
-rmiregistry 1099
+rmiregistry 9878

@@ -4,7 +4,6 @@ import java.io.FileOutputStream;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class FileClient{
@@ -20,9 +19,11 @@ public class FileClient{
       }
       ArrayList<String> listado = new ArrayList<String>();
       if (archivos != null) {
+         int i = 0;
          for (File file : archivos) {
-            System.out.println(file.getName());
+            System.out.println("["+(i+1)+"] "+file.getName());
             listado.add(file.getName());
+            i ++;
          }
 
       }
@@ -33,7 +34,7 @@ public class FileClient{
    public static void main(String argv[]) {
       // checando los argumentos
       if(argv.length != 1) {
-        System.out.println("USO: java FileClient IP");
+        System.out.println("USO: ./client IP");
         System.exit(1);
       }
 
@@ -46,21 +47,16 @@ public class FileClient{
          String[] archivosRemotosLista =  listar(fi);
          int index = 0;
          if (archivosRemotosLista.length != 0) {
-            
-            int i = 0;
-            for (String fichero : archivosRemotosLista) {
-               System.out.println("["+(i+1)+"] "+fichero);
-               i++;
-            }
             System.out.println("Ingrese el archivo que quiere descargar(Numero)");
             Scanner in = new Scanner(System.in);
             index = in.nextInt();
+            index --;
             in.close();
          }
 
          System.out.println("\n\nDescargando archivo: "+archivosRemotosLista[index]);
          byte[] filedata = fi.downloadFile(archivosRemotosLista[index]);
-         File file = new File(argv[0]);
+         File file = new File(archivosRemotosLista[index]);
 
          BufferedOutputStream output = new
          BufferedOutputStream(new FileOutputStream(file.getName()));
