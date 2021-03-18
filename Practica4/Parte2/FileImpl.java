@@ -184,6 +184,7 @@ public class FileImpl extends UnicastRemoteObject
 
    @Override
    public void respaldar(String nombreArchivo) throws RemoteException {
+      //utilizar fileread
       InputStream inputStream = null;
       OutputStream outputStream = null;
       try {
@@ -244,7 +245,7 @@ public class FileImpl extends UnicastRemoteObject
    public void eliminar(String nombreArchivo) throws RemoteException {
       try{
          File archivo = new File(nombreArchivo);
-         boolean estatus = archivo.delete();;
+         boolean estatus = archivo.delete();
          if (!estatus) {
             System.out.println("[!] Error no se ha podido eliminar el  archivo");
          }else{
