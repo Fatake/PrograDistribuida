@@ -172,7 +172,25 @@ public class FileImpl extends UnicastRemoteObject
    }
    @Override
    public void respaldar(String nombreArchivo) throws RemoteException {
-      // TODO Auto-generated method stub
+      InputStream inputStream = null;
+      OutputStream outputStream = null;
+      try {
+         File archivoOriginal = new File(nombreArchivo);
+         File archivoCopia = new File(archivoRespaldo);
+         inputStream = new FileInputStream(archivoOriginal);
+         outputStream = new FileOutputStream(archivoCopia);
+         byte[] buffer = new byte[1024];
+         int length;
+         while ((length = inputStream.read(buffer)) > 0) {
+            outputStream.write(buffer, 0, length);
+         }
+         inputStream.close();
+         outputStream.close();
+         System.out.println("[i] Archivo respaldado.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
       
    }
    @Override
@@ -187,7 +205,19 @@ public class FileImpl extends UnicastRemoteObject
    }
    @Override
    public void eliminar(String nombreArchivo) throws RemoteException {
-      // TODO Auto-generated method stub
+      try{
+         File archivo = new File(nombreArchivo);
+         boolean estatus = archivo.delete();;
+         if (!estatus) {
+            System.out.println("[!] Error no se ha podido eliminar el  archivo");
+        }else{
+            System.out.println("[i] Se ha eliminado el archivo exitosamente");
+        }
+     }catch(Exception e){
+         System.out.println(e);
+     }
+
+ }
       
    }
 }
