@@ -25,13 +25,13 @@ public class FileClient{
          do{
             switch (menu()) {
                case 1: // Descargar Archivos
+                  limpia();
                   archivosRemotosLista = listar(fi);
                   index = 0;
                   if (archivosRemotosLista.length != 0) {
                      System.out.println("\nIngrese el numero del archivo: \n -> ");
                      index = in.nextInt();
-                     index --;
-                     in.close();           
+                     index --;         
                      System.out.println("\n\nDescargando archivo: "+archivosRemotosLista[index]);
                      byte[] filedata = fi.downloadFile(archivosRemotosLista[index]);
                      File file = new File(archivosRemotosLista[index]);
@@ -48,13 +48,13 @@ public class FileClient{
                break;
 
                case 2: // Contar Lineas
+                  limpia();
                   archivosRemotosLista = listar(fi);
                   index = 0;
                   if (archivosRemotosLista.length != 0) {
                      System.out.println("Ingrese el numero del archivo: \n -> ");
                      index = in.nextInt();
-                     index --;
-                     in.close();   
+                     index --; 
                      int numero = fi.cuentaLineas(archivosRemotosLista[index]);
                      System.out.println("El numero de lineas es:" + numero);
                   }else{
@@ -63,13 +63,13 @@ public class FileClient{
                break;
 
                case 3:// Contar Vocales
+                  limpia();
                   archivosRemotosLista = listar(fi);
                   index = 0;
                   if (archivosRemotosLista.length != 0) {
                      System.out.println("Ingrese el numero del archivo: \n -> ");
                      index = in.nextInt();
                      index --;
-                     in.close();   
                      int numero = fi.cuentaVocales(archivosRemotosLista[index]);
                      System.out.println("El numero de vocales es:" + numero);
                   }else{
@@ -78,22 +78,37 @@ public class FileClient{
                break;
 
                case 4: // Escribir en el archivo
-                  
-
-               break;
-
-               case 5: // Imprimir en el archivo
-                  fi.imprimir();
-               break;
-
-               case 6: // Copiar Archivo
+                  limpia();
+                  System.out.println("[i] Escribir en el archivo");
                   archivosRemotosLista = listar(fi);
                   index = 0;
                   if (archivosRemotosLista.length != 0) {
                      System.out.println("Ingrese el numero del archivo: \n -> ");
                      index = in.nextInt();
                      index --;
-                     in.close();   
+                     // int numero = fi.cuentaLineas(archivosRemotosLista[index]);
+                     // System.out.println("El numero de lineas es:" + numero);
+                  }else{
+                     System.out.println("[!] No existen archivos en el servidor");
+                  }
+
+               break;
+
+               case 5: // Imprimir en el archivo
+                  limpia();
+                  archivosRemotosLista = listar(fi);
+                  System.out.println("[i] Imprimiendo Archivo");
+                  fi.imprimir();
+               break;
+
+               case 6: // Copiar Archivo
+                  limpia();
+                  archivosRemotosLista = listar(fi);
+                  index = 0;
+                  if (archivosRemotosLista.length != 0) {
+                     System.out.println("Ingrese el numero del archivo: \n -> ");
+                     index = in.nextInt();
+                     index --; 
                      fi.copiar(archivosRemotosLista[index]);
                      System.out.println("[i] Archivo copiado" );
                   }else{
@@ -102,13 +117,13 @@ public class FileClient{
                break;
 
                case 7: // Respaldar
+                  limpia();
                   archivosRemotosLista = listar(fi);
                   index = 0;
                   if (archivosRemotosLista.length != 0) {
                      System.out.println("Ingrese el numero del archivo: \n -> ");
                      index = in.nextInt();
                      index --;
-                     in.close();   
                      fi.respaldar(archivosRemotosLista[index]);
                      System.out.println("[i] Respaldo completo" );
                   }else{
@@ -117,6 +132,7 @@ public class FileClient{
                break;
 
                case 8: // Renombrar
+                  limpia();
                   archivosRemotosLista = listar(fi);
                   index = 0;
                   if (archivosRemotosLista.length != 0) {
@@ -125,7 +141,6 @@ public class FileClient{
                      System.out.println("Ingrese nuevo nombre: \n -> ");
                      String aux=in.nextLine();
                      index --;
-                     in.close();   
                      fi.renombrar(aux);
                      System.out.println("[i] Archivo renombrado correctamente" );
                   }else{
@@ -135,13 +150,13 @@ public class FileClient{
                break;
 
                case 9: // Eliminar
+                  limpia();
                   archivosRemotosLista = listar(fi);
                   index = 0;
                   if (archivosRemotosLista.length != 0) {
                      System.out.println("Ingrese el numero del archivo: \n -> ");
                      index = in.nextInt();
                      index --;
-                     in.close();   
                      fi.eliminar(archivosRemotosLista[index]);
                      System.out.println("[i] Archivo eliminado u.u" );
                   }else{
@@ -150,15 +165,14 @@ public class FileClient{
                break;
 
                case 99: // SAlir
-                  System.out.print("\033[H\033[2J");  
-                  System.out.flush();  
+                  limpia();
                   System.out.println("\rSaliendo uwu\n\n");
+                  in.close();
                   System.exit(0);
                break;
 
                default:
-                  System.out.print("\033[H\033[2J");  
-                  System.out.flush();  
+                  limpia();
                   System.out.println("\rOpcion invalida\n\n");
                break;
             }
@@ -217,5 +231,9 @@ public class FileClient{
       return option;
    }
 
-   
+   private static void limpia(){
+      System.out.print("\r");  
+      System.out.print("\r\033[H\033[2J");  
+      System.out.flush(); 
+   }
 }
