@@ -8,6 +8,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -71,6 +74,12 @@ public class FileImpl extends UnicastRemoteObject
          return(null);
       }
    }
+
+   /**
+    * Numero de Vocales
+    * @param frase
+    * @return
+    */
    private int numeroDeVocales(String frase) {
       int res = 0;
       String fraseMin = frase.toLowerCase();
@@ -197,14 +206,40 @@ public class FileImpl extends UnicastRemoteObject
 
    @Override
    public void copiar(String nombreArchivoDestino) throws RemoteException {
-      // TODO Auto-generated method stub
+      File origen = new File(this.name);
+		File destino = new File(nombreArchivoDestino);
+		try {
+		   InputStream in = new FileInputStream(destino);
+		   OutputStream os = new FileOutputStream(origen);
+						
+		   byte[] buf = new byte[(int)origen.length()];
+		   int len;
+
+         while ((len = in.read(buf)) > 0) {
+            os.write(buf, 0, len);
+         }
+         in.close();
+		   os.close();
+
+		} catch (IOException ioe){
+		   ioe.printStackTrace();
+		}
       
    }
+   
    @Override
    public void renombrar(String nombreArchivo) throws RemoteException {
-      // TODO Auto-generated method stub
+      Path source = Paths.get("./"+this.name);
+
+      try{
+         Files.move(source, source.resolveSibling(nombreArchivo));
+
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
       
    }
+
    @Override
    public void eliminar(String nombreArchivo) throws RemoteException {
       try{
