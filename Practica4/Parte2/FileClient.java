@@ -83,23 +83,70 @@ public class FileClient{
                break;
 
                case 5: // Imprimir en el archivo
-
+                  fi.imprimir();
                break;
 
                case 6: // Copiar Archivo
-
+                  archivosRemotosLista = listar(fi);
+                  index = 0;
+                  if (archivosRemotosLista.length != 0) {
+                     System.out.println("Ingrese el numero del archivo: \n -> ");
+                     index = in.nextInt();
+                     index --;
+                     in.close();   
+                     fi.copiar(archivosRemotosLista[index]);
+                     System.out.println("[i] Archivo copiado" );
+                  }else{
+                     System.out.println("[!] No existen archivos en el servidor");
+                  }
                break;
 
                case 7: // Respaldar
-
+                  archivosRemotosLista = listar(fi);
+                  index = 0;
+                  if (archivosRemotosLista.length != 0) {
+                     System.out.println("Ingrese el numero del archivo: \n -> ");
+                     index = in.nextInt();
+                     index --;
+                     in.close();   
+                     fi.respaldar(archivosRemotosLista[index]);
+                     System.out.println("[i] Respaldo completo" );
+                  }else{
+                     System.out.println("[!] No existen archivos en el servidor");
+                  }
                break;
 
                case 8: // Renombrar
+                  archivosRemotosLista = listar(fi);
+                  index = 0;
+                  if (archivosRemotosLista.length != 0) {
+                     System.out.println("Ingrese el numero del archivo: \n -> ");
+                     index = in.nextInt();
+                     System.out.println("Ingrese nuevo nombre: \n -> ");
+                     String aux=in.nextLine();
+                     index --;
+                     in.close();   
+                     fi.renombrar(aux);
+                     System.out.println("[i] Archivo renombrado correctamente" );
+                  }else{
+                     System.out.println("[!] No existen archivos en el servidor");
+                  }
 
                break;
 
                case 9: // Eliminar
-
+                  archivosRemotosLista = listar(fi);
+                  index = 0;
+                  if (archivosRemotosLista.length != 0) {
+                     System.out.println("Ingrese el numero del archivo: \n -> ");
+                     index = in.nextInt();
+                     index --;
+                     in.close();   
+                     fi.eliminar(archivosRemotosLista[index]);
+                     System.out.println("[i] Archivo eliminado u.u" );
+                  }else{
+                     System.out.println("[!] No existen archivos en el servidor");
+                  }
                break;
 
                case 99: // SAlir
@@ -151,17 +198,18 @@ public class FileClient{
    }
 
    private static int menu (){
+      Scanner aux = new Scanner(System.in);
+      int option = 0;
       System.out.println("Selecciona una opcion uwu \n<---------------------------->");
       System.out.println("\n[1] Descargar archivo \n[2] Contar lineas");
-      System.out.println("\n[3] Cuenta vocales \n[4] Escribe \n[5] Imprimir");
-      System.out.println("\n[6] Copiar archivo \n[7] Respaldar \n[8] Renombrar");
-      System.out.println("\n[9] Eliminar \n[99] Salir \n-> ");  
+      System.out.println("[3] Cuenta vocales \n[4] Escribe \n[5] Imprimir");
+      System.out.println("[6] Copiar archivo \n[7] Respaldar \n[8] Renombrar");
+      System.out.print("[9] Eliminar \n[99] Salir \n-> ");  
 
-      int option = 0;
+     
       try {
-         Scanner aux = new Scanner(System.in);
          option = aux.nextInt();
-         aux.close();
+         System.out.println(option);
       } catch (Exception e) {
          System.out.println("[!] Error en la lectura del menu");
          System.exit(1);
