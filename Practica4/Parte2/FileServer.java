@@ -9,7 +9,7 @@ public class FileServer {
             System.setSecurityManager(new RMISecurityManager());
         }
         try {
-            FileInterface fi = new FileImpl("FileServer");
+            FileInterface fi = new FileImpl("hola.txt");
             Naming.rebind("//127.0.0.1/FileServer", fi);
             System.out.println("Cargando el archivo en sistema....");
         } catch(Exception e) {
