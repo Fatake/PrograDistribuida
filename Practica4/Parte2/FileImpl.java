@@ -89,8 +89,7 @@ public class FileImpl extends UnicastRemoteObject
    }
 
    @Override
-   public int cuentaLineas(String nombreArchivo) throws RemoteException {
-      
+   public int cuentaLineas(String nombreArchivo) throws RemoteException { 
       BufferedReader reader;
       int contador = 0;
 		try {
@@ -129,14 +128,29 @@ public class FileImpl extends UnicastRemoteObject
 		}
       return contador;
    }
+
    @Override
    public void escribe(OutputStream os) throws RemoteException {
       // TODO Auto-generated method stub
       
    }
+
    @Override
    public void imprimir() throws RemoteException {
-      // TODO Auto-generated method stub
+      BufferedReader reader;
+		try {
+			reader = new BufferedReader(new FileReader(nombreArchivo));
+			String line = reader.readLine();
+         
+			while (line != null) {
+				// read next line
+				line = reader.readLine();
+            System.out.println(line);
+			}
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
       
    }
    @Override
