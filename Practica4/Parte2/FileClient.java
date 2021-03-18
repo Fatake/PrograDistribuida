@@ -85,23 +85,35 @@ public class FileClient{
                case 5: // Imprimir en el archivo
 
                break;
-               case 6:
+
+               case 6: // Copiar Archivo
 
                break;
-               case 7:
+
+               case 7: // Respaldar
 
                break;
-               case 8:
+
+               case 8: // Renombrar
 
                break;
-               case 9:
+
+               case 9: // Eliminar
 
                break;
-               case 99:
-                     System.exit(0);
+
+               case 99: // SAlir
+                  System.out.print("\033[H\033[2J");  
+                  System.out.flush();  
+                  System.out.println("\rSaliendo uwu\n\n");
+                  System.exit(0);
                break;
+
                default:
-                  break;
+                  System.out.print("\033[H\033[2J");  
+                  System.out.flush();  
+                  System.out.println("\rOpcion invalida\n\n");
+               break;
             }
 
          }while(true);
