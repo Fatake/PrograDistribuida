@@ -19,16 +19,16 @@ public class FileClient{
          String servidorDir = "//" + argv[0] + "/FileServer";
          FileInterface fi = (FileInterface) Naming.lookup(servidorDir);
          String[] archivosRemotosLista = null;
+         Scanner in = new Scanner(System.in);
+         int index = 0;
+
          do{
-            switch (menu) {
-               case 0:
-                     // Listando los archivo remotos
-                     archivosRemotosLista = listar(fi);
-               break;
-               case 1:
-                  int index = 0;
+            switch (menu()) {
+               case 1: // Descargar Archivos
+                  archivosRemotosLista = listar(fi);
+                  index = 0;
                   if (archivosRemotosLista.length != 0) {
-                     System.out.println("Ingrese el numero del archivo: \n -> ");
+                     System.out.println("\nIngrese el numero del archivo: \n -> ");
                      index = in.nextInt();
                      index --;
                      in.close();           
@@ -42,36 +42,47 @@ public class FileClient{
                      output.flush();
                      output.close();
                      System.out.println("Descarga completa....");
+                  }else{
+                     System.out.println("[!] No existen archivos en el servidor");
                   }
                break;
-               case 2:
-                  int index = 0;
-                  if (archivosRemotosLista.length != 0) {
-                     System.out.println("Ingrese el numero del archivo: \n -> ");
-                     index = in.nextInt();
-                     index --;
-                     in.close();   
-                     int numero = fi.cuentaLineas(archivosRemotosList[index]);
-                     System.out.println("El numero de lineas es:" + numero);
-                  }
-               break;
-               case 3:
-                  int index = 0;
-                  if (archivosRemotosLista.length != 0) {
-                     System.out.println("Ingrese el numero del archivo: \n -> ");
-                     index = in.nextInt();
-                     index --;
-                     in.close();   
-                     int numero = fi.cuentaVocales(archivosRemotosList[index]);
-                     System.out.println("El numero de vocales es:" + numero);
-                  }
 
+               case 2: // Contar Lineas
+                  archivosRemotosLista = listar(fi);
+                  index = 0;
+                  if (archivosRemotosLista.length != 0) {
+                     System.out.println("Ingrese el numero del archivo: \n -> ");
+                     index = in.nextInt();
+                     index --;
+                     in.close();   
+                     int numero = fi.cuentaLineas(archivosRemotosLista[index]);
+                     System.out.println("El numero de lineas es:" + numero);
+                  }else{
+                     System.out.println("[!] No existen archivos en el servidor");
+                  }
                break;
-               case 4:
+
+               case 3:// Contar Vocales
+                  archivosRemotosLista = listar(fi);
+                  index = 0;
+                  if (archivosRemotosLista.length != 0) {
+                     System.out.println("Ingrese el numero del archivo: \n -> ");
+                     index = in.nextInt();
+                     index --;
+                     in.close();   
+                     int numero = fi.cuentaVocales(archivosRemotosLista[index]);
+                     System.out.println("El numero de vocales es:" + numero);
+                  }else{
+                     System.out.println("[!] No existen archivos en el servidor");
+                  }
+               break;
+
+               case 4: // Escribir en el archivo
                   
 
                break;
-               case 5:
+
+               case 5: // Imprimir en el archivo
 
                break;
                case 6:
@@ -129,9 +140,21 @@ public class FileClient{
 
    private static int menu (){
       System.out.println("Selecciona una opcion uwu \n<---------------------------->");
-      System.out.println("[0] Listar \n [1] Descargar archivo \n [2] Contar lineas \n [3] Cuenta vocales \n [4] Escribe 
-      \n [5] Imprimir \n [6] Copiar archivo \n [7] Respaldar \n [8] Renombrar \n [9] Eliminar \n [99] Salir ");   
-      return (new Scanner(System.in)).nextInt();
+      System.out.println("\n[1] Descargar archivo \n[2] Contar lineas");
+      System.out.println("\n[3] Cuenta vocales \n[4] Escribe \n[5] Imprimir");
+      System.out.println("\n[6] Copiar archivo \n[7] Respaldar \n[8] Renombrar");
+      System.out.println("\n[9] Eliminar \n[99] Salir \n-> ");  
+
+      int option = 0;
+      try {
+         Scanner aux = new Scanner(System.in);
+         option = aux.nextInt();
+         aux.close();
+      } catch (Exception e) {
+         System.out.println("[!] Error en la lectura del menu");
+         System.exit(1);
+      }
+      return option;
    }
 
    

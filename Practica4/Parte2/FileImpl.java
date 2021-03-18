@@ -3,8 +3,10 @@ import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -131,18 +133,18 @@ public class FileImpl extends UnicastRemoteObject
 
    @Override
    public void escribe(OutputStream os) throws RemoteException {
-      File origen = new File(nombre);
+      File origen = new File(this.name);
 		File destino = new File("destino.txt");
 		try {
-		   InputStream in = new FileInputStream(origen);
-		   os = new FileOutputStream(destino);
+		   InputStream in = new FileInputStream(destino);
+		   os = new FileOutputStream(origen);
 						
-		   byte[] buf = new byte[1024];
+		   byte[] buf = new byte[(int)origen.length()];
 		   int len;
 
-		   while ((len = in.read(buf)) > 0) {
-		      os.write(buf, 0, len);
-		   }
+         while ((len = in.read(buf)) > 0) {
+            os.write(buf, 0, len);
+         }
          in.close();
 		   os.close();
 
@@ -156,7 +158,7 @@ public class FileImpl extends UnicastRemoteObject
    public void imprimir() throws RemoteException {
       BufferedReader reader;
 		try {
-			reader = new BufferedReader(new FileReader(nombreArchivo));
+			reader = new BufferedReader(new FileReader(this.name));
 			String line = reader.readLine();
          
 			while (line != null) {
@@ -170,13 +172,14 @@ public class FileImpl extends UnicastRemoteObject
 		}
       
    }
+
    @Override
    public void respaldar(String nombreArchivo) throws RemoteException {
       InputStream inputStream = null;
       OutputStream outputStream = null;
       try {
-         File archivoOriginal = new File(nombreArchivo);
-         File archivoCopia = new File(archivoRespaldo);
+         File archivoOriginal = new File(this.name);
+         File archivoCopia = new File(nombreArchivo);
          inputStream = new FileInputStream(archivoOriginal);
          outputStream = new FileOutputStream(archivoCopia);
          byte[] buffer = new byte[1024];
@@ -187,12 +190,11 @@ public class FileImpl extends UnicastRemoteObject
          inputStream.close();
          outputStream.close();
          System.out.println("[i] Archivo respaldado.");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-      
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
    }
+
    @Override
    public void copiar(String nombreArchivoDestino) throws RemoteException {
       // TODO Auto-generated method stub
@@ -210,12 +212,11 @@ public class FileImpl extends UnicastRemoteObject
          boolean estatus = archivo.delete();;
          if (!estatus) {
             System.out.println("[!] Error no se ha podido eliminar el  archivo");
-        }else{
+         }else{
             System.out.println("[i] Se ha eliminado el archivo exitosamente");
-        }
-     }catch(Exception e){
+         }
+      }catch(Exception e){
          System.out.println(e);
-     }
-   }
-      
+      }
+   }  
 }
