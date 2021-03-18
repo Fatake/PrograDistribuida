@@ -216,8 +216,6 @@ public class FileImpl extends UnicastRemoteObject
      }catch(Exception e){
          System.out.println(e);
      }
-
- }
-      
    }
+      
 }
