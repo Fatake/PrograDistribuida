@@ -134,21 +134,20 @@ public class FileImpl extends UnicastRemoteObject
       File origen = new File(nombre);
 		File destino = new File("destino.txt");
 		try {
-		  InputStream in = new FileInputStream(origen);
-		  os = new FileOutputStream(destino);
+		   InputStream in = new FileInputStream(origen);
+		   os = new FileOutputStream(destino);
 						
-		  byte[] buf = new byte[1024];
-		  int len;
+		   byte[] buf = new byte[1024];
+		   int len;
 
-		  while ((len = in.read(buf)) > 0) {
-		    os.write(buf, 0, len);
-		}
+		   while ((len = in.read(buf)) > 0) {
+		      os.write(buf, 0, len);
+		   }
+         in.close();
+		   os.close();
 
-		in.close();
-		os.close();
-      
 		} catch (IOException ioe){
-		  ioe.printStackTrace();
+		   ioe.printStackTrace();
 		}
       
    }
