@@ -96,8 +96,7 @@ public class FileClient{
 
                case 5: // Imprimir en el archivo
                   limpia();
-                  archivosRemotosLista = listar(fi);
-                  System.out.println("[i] Imprimiendo Archivo");
+                  System.out.println("[i] Imprimiendo Archivo "+fi.getName());
                   fi.imprimir();
                break;
 

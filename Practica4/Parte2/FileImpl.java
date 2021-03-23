@@ -14,12 +14,10 @@ import java.nio.file.Paths;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public class FileImpl extends UnicastRemoteObject
-  implements FileInterface {
-
-   /**
-    *
-    */
+public class FileImpl extends UnicastRemoteObject implements FileInterface {
+   //
+   // Atributos
+   //
    private static final long serialVersionUID = 1L;
    private String name;
 
@@ -254,5 +252,10 @@ public class FileImpl extends UnicastRemoteObject
       }catch(Exception e){
          System.out.println(e);
       }
-   }  
+   }
+
+   @Override
+   public String getName(){
+      return this.name;
+   }
 }
