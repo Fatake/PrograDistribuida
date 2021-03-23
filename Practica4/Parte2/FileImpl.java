@@ -13,6 +13,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FileImpl extends UnicastRemoteObject implements FileInterface {
    //
@@ -73,29 +75,6 @@ public class FileImpl extends UnicastRemoteObject implements FileInterface {
       }
    }
 
-   /**
-    * Numero de Vocales
-    * @param frase
-    * @return
-    */
-   private int numeroDeVocales(String frase) {
-      int res = 0;
-      String fraseMin = frase.toLowerCase();
-
-      for (int i = 0; i < fraseMin.length(); ++i) {
-          switch(fraseMin.charAt(i)) {
-              case 'a':
-              case 'e': 
-              case 'i':
-              case 'o':
-              case 'u':
-                  res++;
-                  break;
-              default:
-            }
-         }
-      return res;
-   }
 
    @Override
    public int cuentaLineas(String nombreArchivo) throws RemoteException { 
@@ -120,63 +99,85 @@ public class FileImpl extends UnicastRemoteObject implements FileInterface {
    
    @Override
    public int cuentaVocales(String nombreArchivo) throws RemoteException {
-      BufferedReader reader;
+      BufferedReader reader = null;
       int contador = 0;
 		try {
 			reader = new BufferedReader(new FileReader(nombreArchivo));
-			String line = reader.readLine();
+   
+			String line = "";
          
-			while (line != null) {
+			do {
 				// read next line
 				line = reader.readLine();
-            contador += numeroDeVocales(line);
-			}
-			reader.close();
+            if(line == null){
+               break;
+            }
+            System.out.println(contador);
+            System.out.print(line);
+            int res = 0;
+            String fraseMin = line.toLowerCase();
+            for (int i = 0; i < fraseMin.length(); ++i) {
+              char aux = fraseMin.charAt(i);
+              if("aeiou".contains(String.valueOf(aux).toLowerCase())){
+                 res ++;
+              }
+            }
+            contador += res;
+			}while (line != null);
+         return contador;	
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+      finally{
+         try {
+            reader.close();
+         } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+         }
+      } 
       return contador;
    }
 
    @Override
-   public void escribe(OutputStream os) throws RemoteException {
-      File origen = new File(this.name);
-		File destino = new File("destino.txt");
+   public Boolean escribe(String destino, String mensaje) throws RemoteException {
+		File fDestino = new File(destino);
 		try {
-		   InputStream in = new FileInputStream(destino);
-		   os = new FileOutputStream(origen);
-						
-		   byte[] buf = new byte[(int)origen.length()];
-		   int len;
-
-         while ((len = in.read(buf)) > 0) {
-            os.write(buf, 0, len);
-         }
-         in.close();
+		   OutputStream os = new FileOutputStream(fDestino,true);	
+		   os.write(mensaje.getBytes(),0,mensaje.length());
 		   os.close();
-
+      
 		} catch (IOException ioe){
 		   ioe.printStackTrace();
+         return false;
 		}
-      
+      return true;
    }
 
    @Override
-   public void imprimir() throws RemoteException {
+   public String[] imprimir(String archivo) throws RemoteException {
       BufferedReader reader;
+      File Farchivo = new File(archivo);
+      List <String> temporal = new  ArrayList <String>();
+      String[] lineas = null;
 		try {
-			reader = new BufferedReader(new FileReader(this.name));
-			String line = reader.readLine();
+			reader = new BufferedReader(new FileReader(Farchivo));
+			String line = null;
          
-			while (line != null) {
-				// read next line
+			do{
 				line = reader.readLine();
-            System.out.println(line);
-			}
+            if (line == null){
+               break;
+            }
+            temporal.add(line);
+			}while (line != null);
 			reader.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+      lineas = new String[temporal.size()];
+      lineas = temporal.toArray(lineas);
+      return lineas;
       
    }
 
@@ -255,7 +256,7 @@ public class FileImpl extends UnicastRemoteObject implements FileInterface {
    }
 
    @Override
-   public String getName(){
+   public String getName() throws RemoteException{
       return this.name;
    }
 }

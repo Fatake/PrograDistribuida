@@ -18,12 +18,12 @@ public interface FileInterface extends Remote {
 	
 	// In	
 	// que escriba el contenido del archivo a os
-	void escribe (OutputStream os) throws RemoteException;
+	Boolean escribe (String destino, String mensaje) throws RemoteException;
 
 	// In 
 	// que imprima el contenido del archivo a pantalla
 
-	void imprimir () throws RemoteException;
+	String[] imprimir (String archivo) throws RemoteException;
 	
 	// In
 	// que respalde el archivo
@@ -42,6 +42,6 @@ public interface FileInterface extends Remote {
 	// que elimine el archivo de almacenamiento masivo.
 	void eliminar(String nombreArchivo) throws RemoteException;
 
-	String getName();
+	String getName() throws RemoteException;
 
 }

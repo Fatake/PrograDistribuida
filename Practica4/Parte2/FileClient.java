@@ -21,7 +21,7 @@ public class FileClient{
          String[] archivosRemotosLista = null;
          Scanner in = new Scanner(System.in);
          int index = 0;
-
+         String aux = null; 
          do{
             switch (menu()) {
                case 1: // Descargar Archivos
@@ -67,9 +67,11 @@ public class FileClient{
                   archivosRemotosLista = listar(fi);
                   index = 0;
                   if (archivosRemotosLista.length != 0) {
-                     System.out.println("Ingrese el numero del archivo: \n -> ");
+                     System.out.print("Ingrese el numero del archivo: \n -> ");
                      index = in.nextInt();
                      index --;
+                     System.out.println(index);
+                     System.out.println(archivosRemotosLista[index]);
                      int numero = fi.cuentaVocales(archivosRemotosLista[index]);
                      System.out.println("El numero de vocales es:" + numero);
                   }else{
@@ -82,12 +84,20 @@ public class FileClient{
                   System.out.println("[i] Escribir en el archivo");
                   archivosRemotosLista = listar(fi);
                   index = 0;
+                  
                   if (archivosRemotosLista.length != 0) {
                      System.out.println("Ingrese el numero del archivo: \n -> ");
                      index = in.nextInt();
                      index --;
-                     // int numero = fi.cuentaLineas(archivosRemotosLista[index]);
-                     // System.out.println("El numero de lineas es:" + numero);
+                     System.out.print("Ingrese los caracteres a escribir : \n ->  ");
+                     aux = in.nextLine();
+                     aux = in.nextLine();
+                     boolean ban = fi.escribe(archivosRemotosLista[index], aux);
+                     if (ban){
+                        System.out.println("[i] Se ha escrito correctamente el archivo");
+                     }else{
+                        System.out.println("[!] Error, no se pudo escribir en el archivo");
+                     }
                   }else{
                      System.out.println("[!] No existen archivos en el servidor");
                   }
@@ -95,9 +105,28 @@ public class FileClient{
                break;
 
                case 5: // Imprimir en el archivo
-                  limpia();
-                  System.out.println("[i] Imprimiendo Archivo "+fi.getName());
-                  fi.imprimir();
+               limpia();
+               System.out.println("[i] Escribir en el archivo");
+               archivosRemotosLista = listar(fi);
+               index = 0;
+               
+               if (archivosRemotosLista.length != 0) {
+                  System.out.println("Ingrese el numero del archivo: \n -> ");
+                  index = in.nextInt();
+                  index --;
+                  String[] ban = fi.imprimir(archivosRemotosLista[index]);
+                  if (ban != null){
+                     limpia();
+                     System.out.println("[i]" + archivosRemotosLista[index]);
+                     for (String string : ban) {
+                        System.out.print(string);
+                     }
+                  }else{
+                     System.out.println("[!] Error, no se pudo imprimir en el archivo");
+                  }
+               }else{
+                  System.out.println("[!] No existen archivos en el servidor");
+               }
                break;
 
                case 6: // Copiar Archivo
@@ -138,7 +167,7 @@ public class FileClient{
                      System.out.println("Ingrese el numero del archivo: \n -> ");
                      index = in.nextInt();
                      System.out.println("Ingrese nuevo nombre: \n -> ");
-                     String aux=in.nextLine();
+                     aux = in.nextLine();
                      index --;
                      fi.renombrar(aux);
                      System.out.println("[i] Archivo renombrado correctamente" );
