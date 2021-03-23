@@ -134,7 +134,7 @@ public class FileClient{
                   archivosRemotosLista = listar(fi);
                   index = 0;
                   if (archivosRemotosLista.length != 0) {
-                     System.out.println("Ingrese el numero del archivo: \n -> ");
+                     System.out.println("Ingrese el numero del archivo destino: \n -> ");
                      index = in.nextInt();
                      index --; 
                      fi.copiar(archivosRemotosLista[index]);
@@ -146,17 +146,11 @@ public class FileClient{
 
                case 7: // Respaldar
                   limpia();
-                  archivosRemotosLista = listar(fi);
-                  index = 0;
-                  if (archivosRemotosLista.length != 0) {
-                     System.out.println("Ingrese el numero del archivo: \n -> ");
-                     index = in.nextInt();
-                     index --;
-                     fi.respaldar(archivosRemotosLista[index]);
-                     System.out.println("[i] Respaldo completo" );
-                  }else{
-                     System.out.println("[!] No existen archivos en el servidor");
-                  }
+                  System.out.println("Ingrese el nombre del archivo a respaldar \n ->");
+                  aux = in.nextLine();
+                  aux = in.nextLine();
+                  fi.respaldar(aux);
+                  System.out.println("[i] Respaldo completo");
                break;
 
                case 8: // Renombrar
