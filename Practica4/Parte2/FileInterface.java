@@ -35,7 +35,7 @@ public interface FileInterface extends Remote {
 
 	// Paulo
 	// que renombre el archivo
-	void renombrar(String nombreArchivo) throws RemoteException;
+	void renombrar(String nombreArchivo,String nombreNuevo) throws RemoteException;
 
 	// In
 	// que elimine el archivo de almacenamiento masivo.

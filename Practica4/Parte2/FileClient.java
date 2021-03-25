@@ -24,14 +24,26 @@ public class FileClient{
          String aux = null; 
          do{
             switch (menu()) {
+               case 0: // Listar
+                  limpia();
+                  archivosRemotosLista = listar(fi);
+                  index = 0;
+                  if (archivosRemotosLista.length == 0) {
+                     System.out.println("[!] No existen archivos en el servidor");
+                  }
+
+               break;
                case 1: // Descargar Archivos
                   limpia();
                   archivosRemotosLista = listar(fi);
                   index = 0;
                   if (archivosRemotosLista.length != 0) {
-                     System.out.println("\nIngrese el numero del archivo: \n -> ");
+                     System.out.print("\nIngrese el numero del archivo a descargar: \n -> ");
                      index = in.nextInt();
-                     index --;         
+                     index --;        
+                     if (index > archivosRemotosLista.length) {
+                        break;
+                     } 
                      System.out.println("\n\nDescargando archivo: "+archivosRemotosLista[index]);
                      byte[] filedata = fi.downloadFile(archivosRemotosLista[index]);
                      File file = new File(archivosRemotosLista[index]);
@@ -52,9 +64,12 @@ public class FileClient{
                   archivosRemotosLista = listar(fi);
                   index = 0;
                   if (archivosRemotosLista.length != 0) {
-                     System.out.println("Ingrese el numero del archivo: \n -> ");
+                     System.out.print("Ingrese el numero del archivo a leer Lineas: \n -> ");
                      index = in.nextInt();
                      index --; 
+                     if (index > archivosRemotosLista.length) {
+                        break;
+                     }
                      int numero = fi.cuentaLineas(archivosRemotosLista[index]);
                      System.out.println("El numero de lineas es:" + numero);
                   }else{
@@ -67,9 +82,12 @@ public class FileClient{
                   archivosRemotosLista = listar(fi);
                   index = 0;
                   if (archivosRemotosLista.length != 0) {
-                     System.out.print("Ingrese el numero del archivo: \n -> ");
+                     System.out.print("Ingrese el numero del archivo a Contar Vocales: \n -> ");
                      index = in.nextInt();
                      index --;
+                     if (index > archivosRemotosLista.length) {
+                        break;
+                     }
                      System.out.println(index);
                      System.out.println(archivosRemotosLista[index]);
                      int numero = fi.cuentaVocales(archivosRemotosLista[index]);
@@ -81,14 +99,15 @@ public class FileClient{
 
                case 4: // Escribir en el archivo
                   limpia();
-                  System.out.println("[i] Escribir en el archivo");
                   archivosRemotosLista = listar(fi);
                   index = 0;
-                  
                   if (archivosRemotosLista.length != 0) {
-                     System.out.println("Ingrese el numero del archivo: \n -> ");
+                     System.out.print("Ingrese el numero del archivo a Imprimir: \n -> ");
                      index = in.nextInt();
                      index --;
+                     if (index > archivosRemotosLista.length) {
+                        break;
+                     }
                      System.out.print("Ingrese los caracteres a escribir : \n ->  ");
                      aux = in.nextLine();
                      aux = in.nextLine();
@@ -106,14 +125,15 @@ public class FileClient{
 
                case 5: // Imprimir en el archivo
                   limpia();
-                  System.out.println("[i] Escribir en el archivo");
                   archivosRemotosLista = listar(fi);
                   index = 0;
-                  
                   if (archivosRemotosLista.length != 0) {
-                     System.out.println("Ingrese el numero del archivo: \n -> ");
+                     System.out.print("Ingrese el numero del archivo a Imprimir: \n -> ");
                      index = in.nextInt();
                      index --;
+                     if (index > archivosRemotosLista.length) {
+                        break;
+                     }
                      String[] ban = fi.imprimir(archivosRemotosLista[index]);
                      if (ban != null){
                         limpia();
@@ -134,10 +154,13 @@ public class FileClient{
                   archivosRemotosLista = listar(fi);
                   index = 0;
                   if (archivosRemotosLista.length != 0) {
-                     System.out.println("Ingrese el numero del archivo copiar: \n -> ");
+                     System.out.print("Ingrese el numero del archivo copiar: \n -> ");
                      index = in.nextInt();
                      index --;
-                     System.out.println("Ingrese el numero del archivo destino: \n -> ");
+                     if (index > archivosRemotosLista.length) {
+                        break;
+                     }
+                     System.out.print("Ingrese el numero del archivo destino: \n -> ");
                      int index2 = in.nextInt();
                      index2 --;
                      fi.copiar(archivosRemotosLista[index],archivosRemotosLista[index2]);
@@ -152,9 +175,12 @@ public class FileClient{
                   archivosRemotosLista = listar(fi);
                   index = 0;
                   if (archivosRemotosLista.length != 0) {
-                     System.out.println("Ingrese el numero del archivo respaldar: \n -> ");
+                     System.out.print("Ingrese el numero del archivo respaldar: \n -> ");
                      index = in.nextInt();
                      index --;
+                     if (index > archivosRemotosLista.length) {
+                        break;
+                     }
                      fi.respaldar(archivosRemotosLista[index]);
                      System.out.println("[i] Respaldo completo");
                   }else{
@@ -167,12 +193,17 @@ public class FileClient{
                   archivosRemotosLista = listar(fi);
                   index = 0;
                   if (archivosRemotosLista.length != 0) {
-                     System.out.println("Ingrese el numero del archivo: \n -> ");
+                     System.out.print("Ingrese el numero del archivo: \n -> ");
                      index = in.nextInt();
-                     System.out.println("Ingrese nuevo nombre: \n -> ");
-                     aux = in.nextLine();
                      index --;
-                     fi.renombrar(aux);
+                     if (index > archivosRemotosLista.length) {
+                        break;
+                     }
+                     System.out.print("Ingrese nuevo nombre: \n -> ");
+                     aux = in.nextLine();
+                     aux = in.nextLine();
+                     
+                     fi.renombrar(archivosRemotosLista[index],aux);
                      System.out.println("[i] Archivo renombrado correctamente" );
                   }else{
                      System.out.println("[!] No existen archivos en el servidor");
@@ -185,7 +216,7 @@ public class FileClient{
                   archivosRemotosLista = listar(fi);
                   index = 0;
                   if (archivosRemotosLista.length != 0) {
-                     System.out.println("Ingrese el numero del archivo: \n -> ");
+                     System.out.print("Ingrese el numero del archivo: \n -> ");
                      index = in.nextInt();
                      index --;
                      fi.eliminar(archivosRemotosLista[index]);
@@ -195,7 +226,7 @@ public class FileClient{
                   }
                break;
 
-               case 99: // SAlir
+               case 99: // Salir
                   limpia();
                   System.out.println("\rSaliendo uwu\n\n");
                   in.close();
@@ -209,8 +240,6 @@ public class FileClient{
             }
 
          }while(true);
-         
-
       } catch(Exception e) {
          System.err.println("FileServer exception: "+ e.getMessage());
          e.printStackTrace();

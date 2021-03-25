@@ -183,7 +183,7 @@ public class FileImpl extends UnicastRemoteObject implements FileInterface {
       OutputStream outputStream = null;
       try {
          // Nombre del archivo respaldo
-         File archivoRespaldo = new File("respaldo-"+nombreArchivo);
+         File archivoRespaldo = new File(nombreArchivo+"-respaldo");
          File archivoOriginal = new File(nombreArchivo);
          // no existe
          if (!archivoRespaldo.exists()) {
@@ -228,16 +228,15 @@ public class FileImpl extends UnicastRemoteObject implements FileInterface {
    }
    
    @Override
-   public void renombrar(String nombreArchivo) throws RemoteException {
-      Path source = Paths.get("./"+this.name);
+   public void renombrar(String nombreArchivo,String nombreNuevo) throws RemoteException {
+      File f = new File(nombreArchivo);
+      Path source = Paths.get(f.getAbsolutePath());
 
       try{
-         Files.move(source, source.resolveSibling(nombreArchivo));
-
+         Files.move(source, source.resolveSibling(nombreNuevo));
       } catch (IOException e) {
          e.printStackTrace();
       }
-      
    }
 
    @Override
