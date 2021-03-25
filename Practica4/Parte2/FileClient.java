@@ -264,7 +264,6 @@ public class FileClient{
             listado.add(file.getName());
             i ++;
          }
-
       }
       String[] list = new String[listado.size()];
       list = listado.toArray(list);
@@ -280,7 +279,6 @@ public class FileClient{
       System.out.println("[6] Copiar archivo \n[7] Respaldar \n[8] Renombrar");
       System.out.print("[9] Eliminar \n[99] Salir \n-> ");  
 
-     
       try {
          option = aux.nextInt();
          System.out.println(option);
