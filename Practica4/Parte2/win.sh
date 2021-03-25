@@ -1,5 +1,5 @@
 #!/bin/bash
-start rmiregistry
+#start rmiregistry 9878
 rm -rf *.class
 javac *.java
 cp *.class ..

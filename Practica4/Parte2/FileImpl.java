@@ -1,4 +1,3 @@
-
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -75,7 +74,6 @@ public class FileImpl extends UnicastRemoteObject implements FileInterface {
       }
    }
 
-
    @Override
    public int cuentaLineas(String nombreArchivo) throws RemoteException { 
       BufferedReader reader;
@@ -85,7 +83,6 @@ public class FileImpl extends UnicastRemoteObject implements FileInterface {
 			String line = reader.readLine();
          
 			while (line != null) {
-				// read next line
 				line = reader.readLine();
             contador ++;
 			}
@@ -95,7 +92,6 @@ public class FileImpl extends UnicastRemoteObject implements FileInterface {
 		}
       return contador;
    }
-
    
    @Override
    public int cuentaVocales(String nombreArchivo) throws RemoteException {
@@ -117,10 +113,10 @@ public class FileImpl extends UnicastRemoteObject implements FileInterface {
             int res = 0;
             String fraseMin = line.toLowerCase();
             for (int i = 0; i < fraseMin.length(); ++i) {
-              char aux = fraseMin.charAt(i);
-              if("aeiou".contains(String.valueOf(aux).toLowerCase())){
-                 res ++;
-              }
+               char aux = fraseMin.charAt(i);
+               if("aeiou".contains(String.valueOf(aux).toLowerCase())){
+                  res ++;
+               }
             }
             contador += res;
 			}while (line != null);
@@ -178,7 +174,6 @@ public class FileImpl extends UnicastRemoteObject implements FileInterface {
       lineas = new String[temporal.size()];
       lineas = temporal.toArray(lineas);
       return lineas;
-      
    }
 
    @Override
@@ -187,10 +182,10 @@ public class FileImpl extends UnicastRemoteObject implements FileInterface {
       InputStream inputStream = null;
       OutputStream outputStream = null;
       try {
-         File archivoOriginal = new File(this.name);
-         File archivoCopia = new File(nombreArchivo);
+         File archivoOriginal = new File(nombreArchivo);
+         File archivoRespaldo = new File(nombreArchivo+".res");
          inputStream = new FileInputStream(archivoOriginal);
-         outputStream = new FileOutputStream(archivoCopia);
+         outputStream = new FileOutputStream(archivoRespaldo);
          byte[] buffer = new byte[1024];
          int length;
          while ((length = inputStream.read(buffer)) > 0) {
@@ -198,15 +193,14 @@ public class FileImpl extends UnicastRemoteObject implements FileInterface {
          }
          inputStream.close();
          outputStream.close();
-         System.out.println("[i] Archivo respaldado.");
       } catch (IOException e) {
          e.printStackTrace();
       }
    }
 
    @Override
-   public void copiar(String nombreArchivoDestino) throws RemoteException {
-      File origen = new File(this.name);
+   public void copiar(String nombreOrigen,String nombreArchivoDestino) throws RemoteException {
+      File origen = new File(nombreOrigen);
 		File destino = new File(nombreArchivoDestino);
 		try {
 		   InputStream in = new FileInputStream(destino);
@@ -224,7 +218,6 @@ public class FileImpl extends UnicastRemoteObject implements FileInterface {
 		} catch (IOException ioe){
 		   ioe.printStackTrace();
 		}
-      
    }
    
    @Override

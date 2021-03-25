@@ -1,5 +1,4 @@
 import java.io.File;
-import java.io.OutputStream;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -32,7 +31,7 @@ public interface FileInterface extends Remote {
 	// Paulo
 	// que copie el contenido de un archivo 
 	// fuente a un archivo destino nombrearchivodestino
-	void copiar (String nombreArchivoDestino) throws RemoteException; 
+	void copiar (String nombreOrigen,String nombreArchivoDestino) throws RemoteException; 
 
 	// Paulo
 	// que renombre el archivo

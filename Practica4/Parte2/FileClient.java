@@ -105,28 +105,28 @@ public class FileClient{
                break;
 
                case 5: // Imprimir en el archivo
-               limpia();
-               System.out.println("[i] Escribir en el archivo");
-               archivosRemotosLista = listar(fi);
-               index = 0;
-               
-               if (archivosRemotosLista.length != 0) {
-                  System.out.println("Ingrese el numero del archivo: \n -> ");
-                  index = in.nextInt();
-                  index --;
-                  String[] ban = fi.imprimir(archivosRemotosLista[index]);
-                  if (ban != null){
-                     limpia();
-                     System.out.println("[i]" + archivosRemotosLista[index]);
-                     for (String string : ban) {
-                        System.out.print(string);
+                  limpia();
+                  System.out.println("[i] Escribir en el archivo");
+                  archivosRemotosLista = listar(fi);
+                  index = 0;
+                  
+                  if (archivosRemotosLista.length != 0) {
+                     System.out.println("Ingrese el numero del archivo: \n -> ");
+                     index = in.nextInt();
+                     index --;
+                     String[] ban = fi.imprimir(archivosRemotosLista[index]);
+                     if (ban != null){
+                        limpia();
+                        System.out.println("[i]" + archivosRemotosLista[index]);
+                        for (String string : ban) {
+                           System.out.print(string);
+                        }
+                     }else{
+                        System.out.println("[!] Error, no se pudo imprimir en el archivo");
                      }
                   }else{
-                     System.out.println("[!] Error, no se pudo imprimir en el archivo");
+                     System.out.println("[!] No existen archivos en el servidor");
                   }
-               }else{
-                  System.out.println("[!] No existen archivos en el servidor");
-               }
                break;
 
                case 6: // Copiar Archivo
@@ -134,10 +134,13 @@ public class FileClient{
                   archivosRemotosLista = listar(fi);
                   index = 0;
                   if (archivosRemotosLista.length != 0) {
-                     System.out.println("Ingrese el numero del archivo destino: \n -> ");
+                     System.out.println("Ingrese el numero del a copiar: \n -> ");
                      index = in.nextInt();
-                     index --; 
-                     fi.copiar(archivosRemotosLista[index]);
+                     index --;
+                     System.out.println("Ingrese el numero del archivo destino: \n -> ");
+                     int index2 = in.nextInt();
+                     index2 --;
+                     fi.copiar(archivosRemotosLista[index],archivosRemotosLista[index2]);
                      System.out.println("[i] Archivo copiado" );
                   }else{
                      System.out.println("[!] No existen archivos en el servidor");
