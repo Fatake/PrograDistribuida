@@ -182,11 +182,18 @@ public class FileImpl extends UnicastRemoteObject implements FileInterface {
       InputStream inputStream = null;
       OutputStream outputStream = null;
       try {
+         // Nombre del archivo respaldo
+         File archivoRespaldo = new File("respaldo-"+nombreArchivo);
          File archivoOriginal = new File(nombreArchivo);
-         File archivoRespaldo = new File(nombreArchivo+".res");
+         // no existe
+         if (!archivoRespaldo.exists()) {
+            archivoRespaldo.createNewFile();
+         }
+
          inputStream = new FileInputStream(archivoOriginal);
          outputStream = new FileOutputStream(archivoRespaldo);
-         byte[] buffer = new byte[1024];
+         byte[] buffer = new byte[(int)archivoOriginal.length()];
+
          int length;
          while ((length = inputStream.read(buffer)) > 0) {
             outputStream.write(buffer, 0, length);
@@ -203,8 +210,8 @@ public class FileImpl extends UnicastRemoteObject implements FileInterface {
       File origen = new File(nombreOrigen);
 		File destino = new File(nombreArchivoDestino);
 		try {
-		   InputStream in = new FileInputStream(destino);
-		   OutputStream os = new FileOutputStream(origen);
+		   InputStream in = new FileInputStream(origen);
+		   OutputStream os = new FileOutputStream(destino);
 						
 		   byte[] buf = new byte[(int)origen.length()];
 		   int len;
