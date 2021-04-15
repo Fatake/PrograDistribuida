@@ -4,16 +4,16 @@ import java.rmi.RMISecurityManager;
 
 public class FileServer {
    public static void main(String argv[]) {
-        System.out.println("Iniciando....");
+        System.out.println("[i] Iniciando....");
         if(System.getSecurityManager() == null) {
             System.setSecurityManager(new RMISecurityManager());
         }
         try {
-            FileInterface fi = new FileImpl("FileServer");
+            FileInterface fi = new FileImpl("hola.txt");
             Naming.rebind("//127.0.0.1/FileServer", fi);
-            System.out.println("Cargando el archivo en sistema....");
+            System.out.println("[i] Servidor Cargado.");
         } catch(Exception e) {
-            System.out.println("FileServer: "+e.getMessage());
+            System.out.println("\nFileServer: "+e.getMessage());
             e.printStackTrace();
         }
    }

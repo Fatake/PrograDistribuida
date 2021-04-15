@@ -88,8 +88,6 @@ public class FileClient{
                      if (index > archivosRemotosLista.length) {
                         break;
                      }
-                     System.out.println(index);
-                     System.out.println(archivosRemotosLista[index]);
                      int numero = fi.cuentaVocales(archivosRemotosLista[index]);
                      System.out.println("El numero de vocales es:" + numero);
                   }else{

@@ -1,7 +1,5 @@
 import java.rmi.Naming;
 import java.rmi.RMISecurityManager;
-
-
 public class FileServer {
    public static void main(String argv[]) {
         System.out.println("\n<------Server On------->");
