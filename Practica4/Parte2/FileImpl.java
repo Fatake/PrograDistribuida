@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -210,18 +212,19 @@ public class FileImpl extends UnicastRemoteObject implements FileInterface {
       File origen = new File(nombreOrigen);
 		File destino = new File(nombreArchivoDestino);
 		try {
-		   InputStream in = new FileInputStream(origen);
-		   OutputStream os = new FileOutputStream(destino);
-						
-		   byte[] buf = new byte[(int)origen.length()];
-		   int len;
+         FileReader fr = new FileReader(origen); 
+         FileWriter salida = new FileWriter(destino, true);
 
-         while ((len = in.read(buf)) > 0) {
-            os.write(buf, 0, len);
-         }
-         in.close();
-		   os.close();
+         BufferedReader br = new BufferedReader(fr);  //creates a buffering character input stream  
 
+         String line;  
+         while((line = br.readLine())!=null)  {  
+            salida.append(line);      //appends line to string buffer  
+            salida.append("\n");     //line feed   
+         }  
+               
+         br.close();
+         salida.close();
 		} catch (IOException ioe){
 		   ioe.printStackTrace();
 		}
