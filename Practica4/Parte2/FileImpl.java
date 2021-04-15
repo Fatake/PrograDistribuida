@@ -8,7 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -105,7 +104,6 @@ public class FileImpl extends UnicastRemoteObject implements FileInterface {
 			String line = "";
          
 			do {
-				// read next line
 				line = reader.readLine();
             if(line == null){
                break;
@@ -130,7 +128,6 @@ public class FileImpl extends UnicastRemoteObject implements FileInterface {
          try {
             reader.close();
          } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
          }
       } 
@@ -215,12 +212,13 @@ public class FileImpl extends UnicastRemoteObject implements FileInterface {
          FileReader fr = new FileReader(origen); 
          FileWriter salida = new FileWriter(destino, true);
 
-         BufferedReader br = new BufferedReader(fr);  //creates a buffering character input stream  
+         BufferedReader br = new BufferedReader(fr);
 
-         String line;  
+         String line;
+         salida.append("\n");
          while((line = br.readLine())!=null)  {  
-            salida.append(line);      //appends line to string buffer  
-            salida.append("\n");     //line feed   
+            salida.append(line);
+            salida.append("\n");
          }  
                
          br.close();

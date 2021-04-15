@@ -284,6 +284,7 @@ public class FileClient{
          System.out.println("[!] Error en la lectura del menu");
          System.exit(1);
       }
+      aux.close();
       return option;
    }
 
