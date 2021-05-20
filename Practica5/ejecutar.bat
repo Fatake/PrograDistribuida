@@ -1,4 +1,8 @@
 @echo off
+echo [!] Este programa requiere JDK 1.3
+echo [!] Ponga la ruta del JDK 1.3 si tiene una diferente en el script
+pause
+
 echo "[!] Borrando .class y FileInterfacePackage"
 del *.class 
 rmdir /S /Q FileInterfacePackage
