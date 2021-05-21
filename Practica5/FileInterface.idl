@@ -1,13 +1,4 @@
 interface FileInterface {
    typedef sequence<octet> Data;
    Data downloadFile(in string fileName);
-   Data listar();
-   long cuentaLineas(in string nombreArchivo);
-   long cuentaVocales(in string nombreArchivo);
-   boolean escribe(in string destino, in string mensaje);
-   Data imprimir(in string destino);
-   oneway void respaldar(in string nombreArchivo);
-   oneway void copiar(in string nombreOrigen,in string nombreArchivoDestino);
-   oneway void renombrar(String nombreArchivo,String nombreNuevo);
-   oneway void eliminar(in string nombreArchivo);
 };

@@ -1,9 +1,6 @@
 @echo off
 echo [!] Este programa requiere JDK 1.3
 echo [!] Ponga la ruta del JDK 1.3 si tiene una diferente en el script
-pause
-echo [!] Primero ejecute limpia.sh
-pause
 
 echo [i] Compilando idl servidor
 start C:\jdk1.3.1_28\bin\idlj.exe -fserver FileInterface.idl

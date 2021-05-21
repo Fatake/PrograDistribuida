@@ -1,11 +1,3 @@
-/**
- * 
-    Initializes the ORB
-    Creates a FileServant object
-    Registers the object in the CORBA Naming Service (COS Naming)
-    Prints a status message
-    Waits for incoming client requests
- */
 import java.io.*;
 import java.nio.*;
 import java.util.*;
