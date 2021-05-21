@@ -2,23 +2,8 @@
 echo [!] Este programa requiere JDK 1.3
 echo [!] Ponga la ruta del JDK 1.3 si tiene una diferente en el script
 pause
-
-echo [i] Creando Backup
-mkdir backup
-copy FileClient.java ./backup
-copy FileServant.java ./backup
-copy FileServer.java ./backup
-copy FileInterface.idl ./backup
-copy hello.txt ./backup
-
-echo [!] Borrando .class y FileInterfacePackage
-del *.class 
-del *.java
-rmdir /S /Q FileInterfacePackage
-
-echo [i] Restaurando Backup
-copy ./backup/* .
-rmdir /S /Q backup
+echo [!] Primero ejecute limpia.sh
+pause
 
 echo [i] Compilando idl servidor
 start C:\jdk1.3.1_28\bin\idlj.exe -fserver FileInterface.idl
