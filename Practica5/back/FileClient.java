@@ -1,6 +1,4 @@
 import java.io.*;
-import java.util.*;
-import java.nio.*;
 import org.omg.CosNaming.*;
 import org.omg.CORBA.*;
 
@@ -71,6 +69,7 @@ public class FileClient {
 
                case 8: // Renombrar
                   limpia();
+                  break;
                   renombrar(fileRef);
                break;
 
@@ -99,13 +98,16 @@ public class FileClient {
 
    private static void eliminar(FileInterfaceOperations fileRef) {
       String[] archivosRemotosLista = null;
-      Scanner in = new Scanner(System.in);
+      BufferedReader in = new BufferedReader(
+         new InputStreamReader(System.in));
+
+
       int index = 0;
       
       archivosRemotosLista = listar(fileRef);
       if (archivosRemotosLista.length != 0) {
          System.out.print("Ingrese el numero del archivo: \n -> ");
-         index = in.nextInt();
+         index = Integer.parseInt(in.readLine());
          index --;
          fileRef.eliminar(archivosRemotosLista[index]);
          System.out.println("[i] Archivo eliminado u.u" );
@@ -116,21 +118,23 @@ public class FileClient {
 
    private static void renombrar(FileInterfaceOperations fileRef) {
       String[] archivosRemotosLista = null;
-      Scanner in = new Scanner(System.in);
+      BufferedReader in = new BufferedReader(
+         new InputStreamReader(System.in));
+
       int index = 0;
       String aux = null; 
 
       archivosRemotosLista = listar(fileRef);
       if (archivosRemotosLista.length != 0) {
          System.out.print("Ingrese el numero del archivo: \n -> ");
-         index = in.nextInt();
+         index = Integer.parseInt(in.readLine());
          index --;
          if (index > archivosRemotosLista.length) {
             break;
          }
          System.out.print("Ingrese nuevo nombre: \n -> ");
-         aux = in.nextLine();
-         aux = in.nextLine();
+         aux = in.readLine();
+
          
          fileRef.renombrar(archivosRemotosLista[index],aux);
          System.out.println("[i] Archivo renombrado correctamente" );
@@ -141,13 +145,15 @@ public class FileClient {
 
    private static void respaldar(FileInterfaceOperations fileRef) {
       String[] archivosRemotosLista = null;
-      Scanner in = new Scanner(System.in);
+      BufferedReader in = new BufferedReader(
+         new InputStreamReader(System.in));
+
       int index = 0;
 
       archivosRemotosLista = listar(fileRef);
       if (archivosRemotosLista.length != 0) {
          System.out.print("Ingrese el numero del archivo respaldar: \n -> ");
-         index = in.nextInt();
+         index = Integer.parseInt(in.readLine());
          index --;
          if (index > archivosRemotosLista.length) {
             break;
@@ -161,19 +167,25 @@ public class FileClient {
 
    private static void copiar(FileInterfaceOperations fileRef) {
       String[] archivosRemotosLista = null;
-      Scanner in = new Scanner(System.in);
+      BufferedReader in = new BufferedReader(
+         new InputStreamReader(System.in));
+
       int index = 0;
 
       archivosRemotosLista = listar(fileRef);
       if (archivosRemotosLista.length != 0) {
          System.out.print("[+] Ingrese el numero del archivo copiar: \n -> ");
-         index = in.nextInt();
+         String name = in.readLine();
+
+         index = Integer.parseInt(name);
          index --;
          if (index > archivosRemotosLista.length) {
             break;
          }
          System.out.print("[+] Ingrese el numero del archivo destino: \n -> ");
-         int index2 = in.nextInt();
+         name = in.readLine();
+
+         int index2 = Integer.parseInt(name);
          index2 --;
          fileRef.copiar(archivosRemotosLista[index],archivosRemotosLista[index2]);
          System.out.println("[i] Archivo copiado" );
@@ -184,13 +196,17 @@ public class FileClient {
 
    private static void imprimir(FileInterfaceOperations fileRef) {
       String[] archivosRemotosLista = null;
-      Scanner in = new Scanner(System.in);
+      BufferedReader in = new BufferedReader(
+         new InputStreamReader(System.in));
+
       int index = 0;
 
       archivosRemotosLista = listar(fileRef);
       if (archivosRemotosLista.length != 0) {
          System.out.print("[+] Ingrese el numero del archivo a Imprimir: \n -> ");
-         index = in.nextInt();
+         String name = in.readLine();
+
+         index = Integer.parseInt(name);
          index --;
          if (index > archivosRemotosLista.length) {
             break;
@@ -212,22 +228,26 @@ public class FileClient {
 
    private static void escribirArchivo(FileInterfaceOperations fileRef) {
       String[] archivosRemotosLista = null;
-      Scanner in = new Scanner(System.in);
+      BufferedReader in = new BufferedReader(
+         new InputStreamReader(System.in));
+
       int index = 0;
       String aux = null; 
 
       archivosRemotosLista = listar(fileRef);
       if (archivosRemotosLista.length != 0) {
          System.out.print("[+] Ingrese el numero del archivo a Imprimir: \n -> ");
-         index = in.nextInt();
+         String name = in.readLine();
+
+         index = Integer.parseInt(name);
          index --;
          if (index > archivosRemotosLista.length) {
             break;
          }
          System.out.print("[+] Ingrese los caracteres a escribir : \n ->  ");
-         aux = in.nextLine();
-         aux = in.nextLine();
-         boolean ban = fileRef.escribe(archivosRemotosLista[index], aux);
+         name = in.readLine();
+
+         boolean ban = fileRef.escribe(archivosRemotosLista[index], name);
          if (ban){
             System.out.println("[i] Se ha escrito correctamente el archivo");
          }else{
@@ -240,13 +260,17 @@ public class FileClient {
 
    private static void contarVocales(FileInterfaceOperations fileRef) {
       String[] archivosRemotosLista = null;
-      Scanner in = new Scanner(System.in);
+      BufferedReader in = new BufferedReader(
+         new InputStreamReader(System.in));
+
       int index = 0;
 
       archivosRemotosLista = listar(fileRef);
       if (archivosRemotosLista.length != 0) {
          System.out.print("[-] Ingrese el numero del archivo a Contar Vocales: \n -> ");
-         index = in.nextInt();
+         String name = in.readLine();
+
+         index = Integer.parseInt(name);
          index --;
          if (index > archivosRemotosLista.length) {
             break;
@@ -260,13 +284,17 @@ public class FileClient {
 
    private static void contarLineas(FileInterfaceOperations fileRef) {
       String[] archivosRemotosLista = null;
-      Scanner in = new Scanner(System.in);
+      BufferedReader in = new BufferedReader(
+         new InputStreamReader(System.in));
+
       int index = 0;
 
       archivosRemotosLista = listar(fileRef);
       if (archivosRemotosLista.length != 0) {
          System.out.print("[-] Ingrese el numero del archivo a leer Lineas: \n -> ");
-         index = in.nextInt();
+         String name = in.readLine();
+
+         index = Integer.parseInt(name);
          index --; 
          if (index > archivosRemotosLista.length) {
             System.out.println("[!] No existe ese archivo");
@@ -281,13 +309,18 @@ public class FileClient {
 
    private static void descargar(FileInterfaceOperations fileRef) {
       String[] archivosRemotosLista = null;
-      Scanner in = new Scanner(System.in);
+      BufferedReader in = new BufferedReader(
+         new InputStreamReader(System.in));
+
+
       int index = 0;
 
       archivosRemotosLista = listar(fileRef);
       if (archivosRemotosLista.length != 0) {
          System.out.print("\nIngrese el numero del archivo a descargar: \n -> ");
-         index = in.nextInt();
+         String name = in.readLine();
+
+         index = Integer.parseInt(name);  
          index --;  
          if (index > archivosRemotosLista.length) {
             System.out.println("[!] Ese archivo no existe");
@@ -322,22 +355,22 @@ public class FileClient {
          System.exit(1);
          e.printStackTrace();
       }
-      ArrayList<String> listado = new ArrayList<String>();
+      String [] list = new String[100];
       if (archivos != null) {
          int i = 0;
          for (File file : archivos) {
             System.out.println("["+(i+1)+"] "+file.getName());
-            listado.add(file.getName());
+            list[i] = file.getName();
             i ++;
          }
       }
-      String[] list = new String[listado.size()];
-      list = listado.toArray(list);
       return list;
    }
 
    private static int menu (){
-      Scanner aux = new Scanner(System.in);
+      BufferedReader aux = new BufferedReader(
+         new InputStreamReader(System.in));
+
       int option = 0;
       System.out.println("\n<---------------------------->");
       System.out.println("\t<-------Menu---------->");
@@ -349,13 +382,13 @@ public class FileClient {
       System.out.print("[9] Eliminar \n[99] Salir \n-> ");  
 
       try {
-         option = aux.nextInt();
+         String name = aux.readLine();
+         option = Integer.parseInt(name);  
       } catch (Exception e) {
          System.out.println("[!] Error en la lectura del menu");
          System.exit(1);
       }
 
-      aux.close();
       return option;
    }
 

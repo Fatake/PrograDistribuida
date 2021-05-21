@@ -7,8 +7,6 @@
     Waits for incoming client requests
  */
 import java.io.*;
-import java.nio.*;
-import java.util.*;
 import org.omg.CosNaming.*;
 import org.omg.CosNaming.NamingContextPackage.*;
 import org.omg.CORBA.*;

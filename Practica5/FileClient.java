@@ -6,6 +6,7 @@ import org.omg.CORBA.*;
 public class FileClient {
    public static void main(String argv[]) {
       try {
+         System.out.println("[i] Iniciando el ciente y buscando ORB Objeto");
          // create and initialize the ORB
          ORB orb = ORB.init(argv, null);
          // get the root naming context
@@ -19,9 +20,10 @@ public class FileClient {
             FileInterfaceHelper.narrow(ncRef.resolve(path));
 
          if(argv.length < 1) {
-            System.out.println("Usage: java FileClient filename");
+            System.out.println("[!] Usage: java FileClient filename");
          }
-
+				
+				System.out.println("[i] Descargando: "+argv[0]);
          // save the file
          File file = new File(argv[0]);
          byte data[] = fileRef.downloadFile(argv[0]);
@@ -30,6 +32,12 @@ public class FileClient {
          output.write(data, 0, data.length);
          output.flush();
          output.close();
+         // Enter data using BufferReader
+					BufferedReader reader = new BufferedReader(
+							new InputStreamReader(System.in));
+	 
+					// Reading data using readLine
+					String name = reader.readLine();
       } catch(Exception e) {
          System.out.println("FileClient Error: " + e.getMessage());
          e.printStackTrace();

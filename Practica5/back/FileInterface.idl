@@ -8,6 +8,6 @@ interface FileInterface {
    Data imprimir(in string destino);
    oneway void respaldar(in string nombreArchivo);
    oneway void copiar(in string nombreOrigen,in string nombreArchivoDestino);
-   oneway void renombrar(String nombreArchivo,String nombreNuevo);
+   oneway void renombrar(in string nombreArchivo,in string nombreNuevo);
    oneway void eliminar(in string nombreArchivo);
 };

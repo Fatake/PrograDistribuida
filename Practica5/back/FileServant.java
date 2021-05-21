@@ -1,6 +1,4 @@
 import java.io.*;
-import java.nio.*;
-import java.util.*;
 
 public class FileServant extends _FileInterfaceImplBase {
 
@@ -72,7 +70,8 @@ public class FileServant extends _FileInterfaceImplBase {
             String fraseMin = line.toLowerCase();
             for (int i = 0; i < fraseMin.length(); ++i) {
                char aux = fraseMin.charAt(i);
-               if("aeiou".contains(String.valueOf(aux).toLowerCase())){
+               String letras = "aeiou";
+               if(letras.contains(String.valueOf(aux).toLowerCase())){
                   res ++;
                }
             }
@@ -109,25 +108,23 @@ public class FileServant extends _FileInterfaceImplBase {
    public String[] imprimir(String archivo){
       BufferedReader reader;
       File Farchivo = new File(archivo);
-      List <String> temporal = new  ArrayList <String>();
+
       String[] lineas = null;
 		try {
 			reader = new BufferedReader(new FileReader(Farchivo));
 			String line = null;
 			do{
 				line = reader.readLine();
-            if (line == null){
+            System.out.println(line);
+            if (line == "\n"){
                break;
             }
-            temporal.add(line);
 			}while (line != null);
 			reader.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-      lineas = new String[temporal.size()];
-      lineas = temporal.toArray(lineas);
-      return lineas;
+      return null;
    }
 
    public void respaldar(String nombreArchivo){
@@ -180,6 +177,7 @@ public class FileServant extends _FileInterfaceImplBase {
 		}
    }
    
+   /*
    public void renombrar(String nombreArchivo,String nombreNuevo){
       File f = new File(nombreArchivo);
       Path source = Paths.get(f.getAbsolutePath());
@@ -189,7 +187,7 @@ public class FileServant extends _FileInterfaceImplBase {
       } catch (IOException e) {
          e.printStackTrace();
       }
-   }
+   }*/
 
    public void eliminar(String nombreArchivo){
       try{
