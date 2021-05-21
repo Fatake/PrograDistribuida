@@ -32,6 +32,5 @@ rm -rf backup
 echo "<-------------------------->"
 echo "[i] Compilando..."
 echo ""
-pause
-./compilar.bat
 
+./compilar.bat

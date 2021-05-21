@@ -1,9 +1,6 @@
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List; 
+import java.nio.*;
+import java.util.*;
 
 public class FileServant extends _FileInterfaceImplBase {
 
@@ -117,7 +114,6 @@ public class FileServant extends _FileInterfaceImplBase {
 		try {
 			reader = new BufferedReader(new FileReader(Farchivo));
 			String line = null;
-         
 			do{
 				line = reader.readLine();
             if (line == null){
@@ -166,11 +162,10 @@ public class FileServant extends _FileInterfaceImplBase {
       File origen = new File(nombreOrigen);
 		File destino = new File(nombreArchivoDestino);
 		try {
-         FileReader fr = new FileReader(origen); 
+         FileReader fr = new FileReader(origen);
          FileWriter salida = new FileWriter(destino, true);
 
          BufferedReader br = new BufferedReader(fr);
-
          String line;
          salida.append("\n");
          while((line = br.readLine())!=null)  {  

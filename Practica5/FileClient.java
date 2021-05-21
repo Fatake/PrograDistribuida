@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import java.nio.*;
 import org.omg.CosNaming.*;
 import org.omg.CORBA.*;
 
@@ -30,7 +31,6 @@ public class FileClient {
             switch (menu()) {
                case 0: // Listar
                   limpia();
-                  fileRef.downloadFile(argv[0]);
                   listar(fileRef);
                break;
                
@@ -72,7 +72,6 @@ public class FileClient {
                case 8: // Renombrar
                   limpia();
                   renombrar(fileRef);
-
                break;
 
                case 9: // Eliminar
@@ -102,7 +101,6 @@ public class FileClient {
       String[] archivosRemotosLista = null;
       Scanner in = new Scanner(System.in);
       int index = 0;
-      String aux = null; 
       
       archivosRemotosLista = listar(fileRef);
       if (archivosRemotosLista.length != 0) {
@@ -145,7 +143,6 @@ public class FileClient {
       String[] archivosRemotosLista = null;
       Scanner in = new Scanner(System.in);
       int index = 0;
-      String aux = null; 
 
       archivosRemotosLista = listar(fileRef);
       if (archivosRemotosLista.length != 0) {
@@ -286,14 +283,12 @@ public class FileClient {
       String[] archivosRemotosLista = null;
       Scanner in = new Scanner(System.in);
       int index = 0;
-      String aux = null; 
 
       archivosRemotosLista = listar(fileRef);
-
       if (archivosRemotosLista.length != 0) {
          System.out.print("\nIngrese el numero del archivo a descargar: \n -> ");
          index = in.nextInt();
-         index --;        
+         index --;  
          if (index > archivosRemotosLista.length) {
             System.out.println("[!] Ese archivo no existe");
             break;
