@@ -14,7 +14,6 @@ copy hello.txt ./backup
 echo [!] Borrando .class y FileInterfacePackage
 del *.class 
 del *.java
-del *.idl
 rmdir /S /Q FileInterfacePackage
 
 echo [i] Restaurando Backup
